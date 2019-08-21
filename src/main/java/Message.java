@@ -1,10 +1,12 @@
 import java.lang.StringBuilder;
+import java.util.List;
+import java.util.ArrayList;
 
 public class Message {
-    String string;
+    List<String> strings = new ArrayList<>();
 
-    public Message(String string) {
-        this.string = string;
+    public Message(List<String> strings) {
+        this.strings = strings;
     }
 
     @Override
@@ -12,7 +14,9 @@ public class Message {
         StringBuilder sb = new StringBuilder();
         String line = "    ____________________________________________________________\n";
         sb.append(line);
-        sb.append(String.format("     %s\n", this.string));
+        for (String string : strings) {
+            sb.append(String.format("     %s\n", string));
+        }
         sb.append(line);
         return sb.toString();
     }
