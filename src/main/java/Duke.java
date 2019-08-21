@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.lang.Integer;
 
 public class Duke {
     public static List<Task> tasks = new ArrayList<>();
@@ -22,7 +23,13 @@ public class Duke {
             if (command.equals("list")) {
                 list();
             } else {
-                add(command);
+                // check if the first word of the line is 'done'
+                String[] commandList = command.split(" ");
+                if (commandList[0].equals("done")) {
+                    done(Integer.valueOf(commandList[1]));
+                } else {
+                    add(command);
+                }
             }
             command = scanner.nextLine();
         }
@@ -44,12 +51,6 @@ public class Duke {
         print(message);
     }
 
-    public static void print(String message) {
-        List<String> list = new ArrayList<>();
-        list.add(message);
-        System.out.println(new Message(list));
-    }
-
     public static void add(String task) {
         tasks.add(new Task(task));
         print(String.format("added: %s", task));
@@ -57,11 +58,33 @@ public class Duke {
 
     public static void list() {
         List<String> list = new ArrayList<>();
+        list.add("Here are the tasks in your list:");
         int index = 1;
         for (Task task : tasks) {
-            list.add(String.format("%d. %s", index, task.text));;
+            String message;
+            if (task.isDone()) {
+                message = String.format("%d.[✓] %s", index, task.getText());
+            } else {
+                message = String.format("%d.[✗] %s", index, task.getText());
+            }
+            list.add(message);
             index += 1;
         }
+        System.out.println(new Message(list));
+    }
+
+    public static void done(int num) {
+        Task task = tasks.get(num - 1);
+        task.markAsDone();
+        List<String> list = new ArrayList<>();
+        list.add("Nice! I've marked this task as done:");
+        list.add(String.format("  [✓] %s", task.getText()));
+        System.out.println(new Message(list));
+    }
+
+    public static void print(String message) {
+        List<String> list = new ArrayList<>();
+        list.add(message);
         System.out.println(new Message(list));
     }
 }
