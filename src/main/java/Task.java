@@ -1,6 +1,13 @@
+import java.util.Hashtable;
+
 public class Task {
     private String text;
-    private boolean done;
+    protected Boolean done;
+
+    public static Hashtable<Boolean, String> icons = new Hashtable<>() {{
+        put(true, "✓");
+        put(false, "✗");
+    }};
 
     public Task(String text) {
         this.text = text;
@@ -15,7 +22,11 @@ public class Task {
         return this.text;
     }
 
-    public boolean isDone() {
+    public Boolean isDone() {
         return this.done;
+    }
+
+    public String getIcon() {
+        return icons.get(this.done);
     }
 }
