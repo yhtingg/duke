@@ -28,9 +28,23 @@ public class Duke {
                 String[] commandList = command.split(" ");
                 String firstWord = commandList[0];
                 if (firstWord.equals("done")) {
-                    done(Integer.valueOf(commandList[1]));
+                    try {
+                        if (commandList.length == 1) {
+                            throw new DukeException("☹ OOPS!!! The task index cannot be empty.");
+                        }
+                        done(Integer.valueOf(commandList[1]));
+                    } catch (DukeException e) {
+                        print(e.getMessage());
+                    }
                 } else if (firstWord.equals("delete")) {
-                    delete(Integer.valueOf(commandList[1]));
+                    try {
+                        if (commandList.length == 1) {
+                            throw new DukeException("☹ OOPS!!! The task index cannot be empty.");
+                        }
+                        delete(Integer.valueOf(commandList[1]));
+                    } catch (DukeException e) {
+                        print(e.getMessage());
+                    }
                 } else {
                     try {
                         add(command);
@@ -110,7 +124,10 @@ public class Duke {
         return event;
     }
 
-    public static void delete(int num) {
+    public static void delete(int num) throws DukeException {
+        if (num > tasks.size()) {
+            throw new DukeException("☹ OOPS!!! There is no such task.");
+        }
         Task task = tasks.get(num - 1);
         tasks.remove(num - 1);
         List<String> list = new ArrayList<>();
@@ -133,7 +150,10 @@ public class Duke {
         System.out.println(new Message(list));
     }
 
-    public static void done(int num) {
+    public static void done(int num) throws DukeException {
+        if (num > tasks.size()) {
+            throw new DukeException("☹ OOPS!!! There is no such task.");
+        }
         Task task = tasks.get(num - 1);
         task.markAsDone();
         List<String> list = new ArrayList<>();
