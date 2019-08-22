@@ -29,7 +29,11 @@ public class Duke {
                 if (commandList[0].equals("done")) {
                     done(Integer.valueOf(commandList[1]));
                 } else {
-                    add(command);
+                    try {
+                        add(command);
+                    } catch (DukeException e) {
+                        print(e.getMessage());
+                    }
                 }
             }
             command = scanner.nextLine();
@@ -52,17 +56,28 @@ public class Duke {
         print(message);
     }
 
-    public static void add(String text) {
+    public static void add(String text) throws DukeException {
         String[] commandList = text.split(" ");
         String taskType = commandList[0];
         String taskText = String.join(" ", Arrays.copyOfRange(commandList, 1, commandList.length));
         Task task;
         if (taskType.equals("todo")) {
+            if (taskText.isEmpty()) {
+                throw new DukeException("☹ OOPS!!! The description of a todo cannot be empty.");
+            }
             task = addTodo(taskText);
         } else if (taskType.equals("deadline")) {
+            if (taskText.isEmpty()) {
+                throw new DukeException("☹ OOPS!!! The description of a deadline cannot be empty.");
+            }
             task = addDeadline(taskText);
-        } else { // (taskType.equals("event"))
+        } else if (taskType.equals("event")) {
+            if (taskText.isEmpty()) {
+                throw new DukeException("☹ OOPS!!! The description of a event cannot be empty.");
+            }
             task = addEvent(taskText);
+        } else {
+            throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
         }
         List<String> list = new ArrayList<>();
         list.add("Got it. I've added this task:");
