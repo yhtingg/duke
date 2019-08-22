@@ -26,8 +26,11 @@ public class Duke {
             } else {
                 // check if the first word of the line is 'done'
                 String[] commandList = command.split(" ");
-                if (commandList[0].equals("done")) {
+                String firstWord = commandList[0];
+                if (firstWord.equals("done")) {
                     done(Integer.valueOf(commandList[1]));
+                } else if (firstWord.equals("delete")) {
+                    delete(Integer.valueOf(commandList[1]));
                 } else {
                     try {
                         add(command);
@@ -105,6 +108,17 @@ public class Duke {
         Event event = new Event(attr[0], attr[1]);
         tasks.add(event);
         return event;
+    }
+
+    public static void delete(int num) {
+        Task task = tasks.get(num - 1);
+        tasks.remove(num - 1);
+        List<String> list = new ArrayList<>();
+        list.add("Noted. I've removed this task:");
+        list.add(String.format("  %s", task));
+        String noun = tasks.size() > 1 ? "tasks" : "task";
+        list.add(String.format("Now you have %d %s in the list.", tasks.size(), noun));
+        System.out.println(new Message(list));
     }
 
     public static void list() {
