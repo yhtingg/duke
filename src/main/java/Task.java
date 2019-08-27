@@ -1,6 +1,6 @@
 import java.util.Hashtable;
 
-public class Task {
+public abstract class Task {
     private String text;
     protected Boolean done;
 
@@ -12,6 +12,11 @@ public class Task {
     public Task(String text) {
         this.text = text;
         this.done = false;
+    }
+
+    public Task(String text, Boolean done) {
+        this.text = text;
+        this.done = done;
     }
 
     public void markAsDone() {
@@ -29,4 +34,16 @@ public class Task {
     public String getIcon() {
         return icons.get(this.done);
     }
+
+    public String getDate() {
+        if (this instanceof Deadline) {
+            return ((Deadline) this).getDate();
+        } else if (this instanceof Event) {
+            return ((Event) this).getDate();
+        } else {
+            return null;
+        }
+    }
+
+    public abstract String getType();
 }

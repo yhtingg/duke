@@ -5,7 +5,8 @@ import java.util.Scanner;
 import java.lang.Integer;
 
 public class Duke {
-    public static List<Task> tasks = new ArrayList<>();
+    public static Data data = new Data("../../data/duke.txt");
+    public static List<Task> tasks = data.read();
 
     public static void main(String[] args) {
         String logo = " ____        _        \n"
@@ -55,6 +56,7 @@ public class Duke {
             }
             command = scanner.nextLine();
         }
+        data.save();
 
         exit();
     }
