@@ -6,7 +6,7 @@ public class Event extends Task {
         this.date = date;
     }
 
-    public Event(String text, Boolean done, Date date) {
+    public Event(String text, boolean done, Date date) {
         super(text, done);
         this.date = date;
     }

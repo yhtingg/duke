@@ -2,7 +2,7 @@ import java.util.Hashtable;
 
 public abstract class Task {
     private String text;
-    protected Boolean done;
+    protected boolean done;
 
     public static Hashtable<Boolean, String> icons = new Hashtable<>() {{
         put(true, "✓");
@@ -14,7 +14,7 @@ public abstract class Task {
         this.done = false;
     }
 
-    public Task(String text, Boolean done) {
+    public Task(String text, boolean done) {
         this.text = text;
         this.done = done;
     }
@@ -27,7 +27,7 @@ public abstract class Task {
         return this.text;
     }
 
-    public Boolean isDone() {
+    public boolean isDone() {
         return this.done;
     }
 
@@ -36,10 +36,8 @@ public abstract class Task {
     }
 
     public Date getDate() {
-        if (this instanceof Deadline) {
-            return ((Deadline) this).getDate();
-        } else if (this instanceof Event) {
-            return ((Event) this).getDate();
+        if (this instanceof Deadline || this instanceof Event) {
+            return this.getDate();
         } else {
             return null;
         }

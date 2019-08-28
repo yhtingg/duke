@@ -47,7 +47,6 @@ public class Date {
     public String getDate() {
         String[] dmy = this.date.split("/");
         int dayAsInt = Integer.valueOf(dmy[0]);
-        System.out.println(dmy[0]);
         String day, month;
         if (dayAsInt > 10) {
             day = dmy[0].substring(0,1) + ordinals.get(dayAsInt % 10);
