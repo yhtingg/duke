@@ -6,9 +6,17 @@ public class Deadline extends Task {
         this.datetime = datetime;
     }
 
+    public Deadline(String text, Boolean done, String datetime) {
+        super(text, done);
+        this.datetime = datetime;
+    }
+
     public String getDate() {
         return this.datetime;
     }
+
+    @Override
+    public String getType() { return "D"; }
 
     @Override
     public String toString() {
