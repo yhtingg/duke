@@ -1,18 +1,18 @@
 public class Event extends Task {
-    private String datetime;
+    private Date date;
 
-    public Event(String text, String datetime) {
+    public Event(String text, Date date) {
         super(text);
-        this.datetime = datetime;
+        this.date = date;
     }
 
-    public Event(String text, Boolean done, String datetime) {
+    public Event(String text, Boolean done, Date date) {
         super(text, done);
-        this.datetime = datetime;
+        this.date = date;
     }
 
-    public String getDate() {
-        return this.datetime;
+    public Date getDate() {
+        return this.date;
     }
 
     @Override
@@ -20,6 +20,6 @@ public class Event extends Task {
 
     @Override
     public String toString() {
-        return String.format("[E][%s] %s (at: %s)", this.getIcon(), this.getText(), this.datetime);
+        return String.format("[E][%s] %s (at: %s)", this.getIcon(), this.getText(), this.date);
     }
 }

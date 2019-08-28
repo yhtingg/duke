@@ -112,18 +112,26 @@ public class Duke {
         return todo;
     }
 
-    public static Deadline addDeadline(String task) {
+    public static Deadline addDeadline(String task) throws DukeException {
         String[] attr = task.split(" /by ");
-        Deadline deadline = new Deadline(attr[0], attr[1]);
-        tasks.add(deadline);
-        return deadline;
+        if (Date.matches(attr[1])) {
+            Deadline deadline = new Deadline(attr[0], new Date(attr[1]));
+            tasks.add(deadline);
+            return deadline;
+        } else {
+            throw new DukeException("☹ OOPS!!! A valid date was not submitted.");
+        }
     }
 
-    public static Event addEvent(String task) {
+    public static Event addEvent(String task) throws DukeException {
         String[] attr = task.split(" /at ");
-        Event event = new Event(attr[0], attr[1]);
-        tasks.add(event);
-        return event;
+        if (Date.matches(attr[1])) {
+            Event event = new Event(attr[0], new Date(attr[1]));
+            tasks.add(event);
+            return event;
+        } else {
+            throw new DukeException("☹ OOPS!!! A valid date was not submitted.");
+        }
     }
 
     public static void delete(int num) throws DukeException {

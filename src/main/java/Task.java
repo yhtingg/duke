@@ -35,7 +35,7 @@ public abstract class Task {
         return icons.get(this.done);
     }
 
-    public String getDate() {
+    public Date getDate() {
         if (this instanceof Deadline) {
             return ((Deadline) this).getDate();
         } else if (this instanceof Event) {

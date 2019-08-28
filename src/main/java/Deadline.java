@@ -1,18 +1,18 @@
 public class Deadline extends Task {
-    private String datetime;
+    private Date date;
 
-    public Deadline(String text, String datetime) {
+    public Deadline(String text, Date date) {
         super(text);
-        this.datetime = datetime;
+        this.date = date;
     }
 
-    public Deadline(String text, Boolean done, String datetime) {
+    public Deadline(String text, Boolean done, Date date) {
         super(text, done);
-        this.datetime = datetime;
+        this.date = date;
     }
 
-    public String getDate() {
-        return this.datetime;
+    public Date getDate() {
+        return this.date;
     }
 
     @Override
@@ -20,6 +20,6 @@ public class Deadline extends Task {
 
     @Override
     public String toString() {
-        return String.format("[D][%s] %s (by: %s)", this.getIcon(), this.getText(), this.datetime);
+        return String.format("[D][%s] %s (by: %s)", this.getIcon(), this.getText(), this.date);
     }
 }

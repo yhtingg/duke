@@ -24,9 +24,9 @@ public class Data {
                 if (taskType.equals("T")) {
                     tasks.add(new Todo(text, done));
                 } else if (taskType.equals("D")) {
-                    tasks.add(new Deadline(text, done, task[3]));
+                    tasks.add(new Deadline(text, done, new Date(task[3])));
                 } else if (taskType.equals("E")) {
-                    tasks.add(new Event(text, done, task[3]));
+                    tasks.add(new Event(text, done, new Date(task[3])));
                 }
             }
         } catch (IOException e) {
@@ -43,7 +43,7 @@ public class Data {
                 if (task instanceof Todo) {
                     line = String.format("%s | %d | %s\n", task.getType(), task.isDone() ? 1 : 0, task.getText());
                 } else {
-                    line = String.format("%s | %d | %s | %s\n", task.getType(), task.isDone() ? 1 : 0, task.getText(), task.getDate());
+                    line = String.format("%s | %d | %s | %s\n", task.getType(), task.isDone() ? 1 : 0, task.getText(), task.getDate().getRawDate());
                 }
                 bw.write(line);
             }
