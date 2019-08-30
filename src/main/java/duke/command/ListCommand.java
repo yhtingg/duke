@@ -1,3 +1,8 @@
+package duke.command;
+
+import duke.*;
+import duke.task.Task;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -5,7 +10,7 @@ public class ListCommand extends Command {
     public ListCommand() {}
 
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public void execute(TaskList tasks, Ui ui, Storage storage) {
         List<String> list = new ArrayList<>();
         list.add("Here are the tasks in your list:");
         int index = 1;

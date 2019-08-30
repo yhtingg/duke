@@ -1,4 +1,7 @@
+package duke.task;
+
 import java.util.Hashtable;
+import duke.Date;
 
 public abstract class Task {
     private String text;

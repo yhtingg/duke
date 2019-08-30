@@ -1,3 +1,5 @@
+package duke;
+
 import java.util.Hashtable;
 import java.util.regex.Pattern;
 

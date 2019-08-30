@@ -1,3 +1,7 @@
+package duke.task;
+
+import duke.Date;
+
 public class Event extends Task {
     private Date date;
 

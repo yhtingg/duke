@@ -1,3 +1,5 @@
+package duke;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -33,7 +35,7 @@ public class Ui {
     }
 
     public static void greet() {
-        String message = "Hello! I'm Duke\n     What can I do for you?";
+        String message = "Hello! I'm Duke.\n     What can I do for you?";
         print(message);
     }
 

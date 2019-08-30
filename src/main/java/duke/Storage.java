@@ -1,3 +1,10 @@
+package duke;
+
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.Task;
+import duke.task.Todo;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,12 +26,18 @@ public class Storage {
                 String text = task[2];
                 String taskType = task[0];
                 boolean done = task[1].equals("1");
-                if (taskType.equals("T")) {
+                switch (taskType) {
+                case "T":
                     tasks.add(new Todo(text, done));
-                } else if (taskType.equals("D")) {
+                    break;
+                case "D":
                     tasks.add(new Deadline(text, done, new Date(task[3])));
-                } else if (taskType.equals("E")) {
+                    break;
+                case "E":
                     tasks.add(new Event(text, done, new Date(task[3])));
+                    break;
+                default:
+                    break;
                 }
             }
             if (tasks.isEmpty()) {
