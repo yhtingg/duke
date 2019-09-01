@@ -2,6 +2,10 @@ package duke;
 
 import duke.command.*;
 
+import java.util.Arrays;
+
+import static javax.swing.text.html.HTML.Tag.HEAD;
+
 /**
  * Represents a reader. A <code>Parser</code> parses and understands a given
  * string and tells the Ui which command to be run next.
@@ -23,17 +27,21 @@ public class Parser {
             // check if the first word of the line is 'done'
             String[] commandList = command.split(" ");
             String firstWord = commandList[0];
-            if (firstWord.equals("done")) {
+            switch (firstWord) {
+            case "done":
                 if (commandList.length == 1) {
                     throw new DukeException("☹ OOPS!!! The task index cannot be empty.");
                 }
                 return new DoneCommand(Integer.parseInt(commandList[1]));
-            } else if (firstWord.equals("delete")) {
+            case "delete":
                 if (commandList.length == 1) {
                     throw new DukeException("☹ OOPS!!! The task index cannot be empty.");
                 }
                 return new DeleteCommand(Integer.parseInt(commandList[1]));
-            } else {
+            case "find":
+                String keyword = String.join(" ", Arrays.copyOfRange(commandList, 1, commandList.length));
+                return new FindCommand(keyword);
+            default:
                 return new AddCommand(command);
             }
         }

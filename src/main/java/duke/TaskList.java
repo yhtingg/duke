@@ -60,4 +60,8 @@ public class TaskList {
     public void remove(int index) {
         this.tasks.remove(index);
     }
+
+    public boolean isEmpty() {
+        return this.tasks.size() == 0;
+    }
 }
