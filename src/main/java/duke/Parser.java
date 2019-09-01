@@ -2,7 +2,18 @@ package duke;
 
 import duke.command.*;
 
+/**
+ * Represents a reader. A <code>Parser</code> parses and understands a given
+ * string and tells the Ui which command to be run next.
+ */
 public class Parser {
+    /**
+     * Reads the given string and processes it accordingly to return
+     * an appropriate Command.
+     * @param command given string.
+     * @return matching Command object as implied from the given string.
+     * @throws DukeException if the format of the given string is invalid.
+     */
     public static Command parse(String command) throws DukeException {
         if (command.equals("bye")) {
             return new ExitCommand();

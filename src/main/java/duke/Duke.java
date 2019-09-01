@@ -2,6 +2,11 @@ package duke;
 
 import duke.command.Command;
 
+/**
+ * Represents a Duke object. <code>Duke</code> is a virtual assistant which allows
+ * users to input their todos, deadlines and events. Users can track the completion
+ * of their tasks and view them in a readable list easily.
+ */
 public class Duke {
     private Storage storage;
     private TaskList tasks;
@@ -18,6 +23,9 @@ public class Duke {
         }
     }
 
+    /**
+     * Starts a program to take in user input and perform commands respectively.
+     */
     public void run() {
         ui.showWelcome();
         boolean isExit = false;

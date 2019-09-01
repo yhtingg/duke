@@ -6,6 +6,10 @@ import duke.task.Task;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Represents a done Command. A <code>DoneCommand</code> marks a task in the task
+ * list as complete.
+ */
 public class DoneCommand extends Command {
     private int index;
 
@@ -13,6 +17,13 @@ public class DoneCommand extends Command {
         this.index = index;
     }
 
+    /**
+     * Marks a task in the task list as complete.
+     * @param tasks list of tasks given.
+     * @param ui ui object given.
+     * @param storage storage given.
+     * @throws DukeException if the given index is out of range.
+     */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         if (this.index > tasks.getSize()) {

@@ -4,6 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * Represents an user interface. A <code>Ui</code> handles the display of messages
+ * and the incoming user input.
+ */
 public class Ui {
     private Scanner scanner;
 
@@ -11,14 +15,24 @@ public class Ui {
         this.scanner = new Scanner(System.in);
     }
 
+    /**
+     * Prints a message when there is no saved data.
+     */
     public void showLoadingError() {
         print("There is no saved task list. I've created a new one for you.");
     }
 
+    /**
+     * Prints an error to the console.
+     * @param error error to be printed.
+     */
     public void showError(String error) {
         print(error);
     }
 
+    /**
+     * Prints the welcome message.
+     */
     public void showWelcome() {
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
@@ -30,15 +44,26 @@ public class Ui {
         greet();
     }
 
+    /**
+     * Reads the next line of user input.
+     * @return raw unprocessed string of user input.
+     */
     public String readCommand() {
         return this.scanner.nextLine();
     }
 
+    /**
+     * Prints a greeting message to the user.
+     */
     public static void greet() {
         String message = "Hello! I'm Duke.\n     What can I do for you?";
         print(message);
     }
 
+    /**
+     * Formats a regular string into a Message.
+     * @param message string to be converted.
+     */
     public static void print(String message) {
         List<String> list = new ArrayList<>();
         list.add(message);
