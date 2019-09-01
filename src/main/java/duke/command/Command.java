@@ -11,7 +11,7 @@ import java.util.List;
  * outcomes as specified by the execution of the command.
  */
 public abstract class Command {
-    public static void print(String message) {
+    static void print(String message) {
         List<String> list = new ArrayList<>();
         list.add(message);
         System.out.println(new Message(list));

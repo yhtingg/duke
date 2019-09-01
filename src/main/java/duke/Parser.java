@@ -27,12 +27,12 @@ public class Parser {
                 if (commandList.length == 1) {
                     throw new DukeException("☹ OOPS!!! The task index cannot be empty.");
                 }
-                return new DoneCommand(Integer.valueOf(commandList[1]));
+                return new DoneCommand(Integer.parseInt(commandList[1]));
             } else if (firstWord.equals("delete")) {
                 if (commandList.length == 1) {
                     throw new DukeException("☹ OOPS!!! The task index cannot be empty.");
                 }
-                return new DeleteCommand(Integer.valueOf(commandList[1]));
+                return new DeleteCommand(Integer.parseInt(commandList[1]));
             } else {
                 return new AddCommand(command);
             }

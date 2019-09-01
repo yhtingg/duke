@@ -9,9 +9,9 @@ import duke.Date;
  */
 public abstract class Task {
     private String text;
-    protected boolean done;
+    private boolean done;
 
-    public static Hashtable<Boolean, String> icons = new Hashtable<>() {{
+    private static Hashtable<Boolean, String> icons = new Hashtable<>() {{
         put(true, "✓");
         put(false, "✗");
     }};
@@ -53,7 +53,7 @@ public abstract class Task {
      * Returns the icon representing the state of the Task.
      * @return the icon representing the state of the Task.
      */
-    public String getIcon() {
+    String getIcon() {
         return icons.get(this.done);
     }
 

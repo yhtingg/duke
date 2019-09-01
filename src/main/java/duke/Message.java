@@ -10,7 +10,7 @@ import java.util.ArrayList;
  * with each string concatenated with 4 white spaces at the front.
  */
 public class Message {
-    private List<String> strings = new ArrayList<>();
+    private List<String> strings;
 
     public Message(List<String> strings) {
         this.strings = strings;

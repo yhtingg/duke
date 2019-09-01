@@ -11,14 +11,14 @@ import java.util.Scanner;
 public class Ui {
     private Scanner scanner;
 
-    public Ui() {
+    Ui() {
         this.scanner = new Scanner(System.in);
     }
 
     /**
      * Prints a message when there is no saved data.
      */
-    public void showLoadingError() {
+    void showLoadingError() {
         print("There is no saved task list. I've created a new one for you.");
     }
 
@@ -26,7 +26,7 @@ public class Ui {
      * Prints an error to the console.
      * @param error error to be printed.
      */
-    public void showError(String error) {
+    void showError(String error) {
         print(error);
     }
 
@@ -48,7 +48,7 @@ public class Ui {
      * Reads the next line of user input.
      * @return raw unprocessed string of user input.
      */
-    public String readCommand() {
+    String readCommand() {
         return this.scanner.nextLine();
     }
 
