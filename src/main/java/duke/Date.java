@@ -48,19 +48,19 @@ public class Date {
 
     public String getDate() {
         String[] dmy = this.date.split("/");
-        int dayAsInt = Integer.valueOf(dmy[0]);
+        int dayAsInt = Integer.parseInt(dmy[0]);
         String day, month;
         if (dayAsInt > 10) {
             day = dmy[0].substring(0,1) + ordinals.get(dayAsInt % 10);
         } else {
             day = ordinals.get(dayAsInt);
         }
-        month = months.get(Integer.valueOf(dmy[1]));
+        month = months.get(Integer.parseInt(dmy[1]));
         return String.format("%s of %s %s", day, month, dmy[2]);
     }
 
-    public String getTime() {
-        int hour = Integer.valueOf(this.time.substring(0,2));
+    private String getTime() {
+        int hour = Integer.parseInt(this.time.substring(0,2));
         String min = this.time.substring(2);
         return String.format("%d:%s%s", hour > 12 ? hour % 12 : hour, min, hour > 12 ? "pm" : "am");
     }

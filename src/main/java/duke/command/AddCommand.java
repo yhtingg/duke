@@ -17,13 +17,13 @@ public class AddCommand extends Command {
         this.command = command;
     }
 
-    public static Todo addTodo(String task, TaskList tasks) {
+    private static Todo addTodo(String task, TaskList tasks) {
         Todo todo = new Todo(task);
         tasks.add(todo);
         return todo;
     }
 
-    public static Deadline addDeadline(String task, TaskList tasks) throws DukeException {
+    private static Deadline addDeadline(String task, TaskList tasks) throws DukeException {
         String[] attr = task.split(" /by ");
         if (Date.matches(attr[1])) {
             Deadline deadline = new Deadline(attr[0], new Date(attr[1]));
@@ -34,7 +34,7 @@ public class AddCommand extends Command {
         }
     }
 
-    public static Event addEvent(String task, TaskList tasks) throws DukeException {
+    private static Event addEvent(String task, TaskList tasks) throws DukeException {
         String[] attr = task.split(" /at ");
         if (Date.matches(attr[1])) {
             Event event = new Event(attr[0], new Date(attr[1]));

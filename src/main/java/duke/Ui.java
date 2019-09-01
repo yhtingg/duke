@@ -7,19 +7,19 @@ import java.util.Scanner;
 public class Ui {
     private Scanner scanner;
 
-    public Ui() {
+    Ui() {
         this.scanner = new Scanner(System.in);
     }
 
-    public void showLoadingError() {
+    void showLoadingError() {
         print("There is no saved task list. I've created a new one for you.");
     }
 
-    public void showError(String error) {
+    void showError(String error) {
         print(error);
     }
 
-    public void showWelcome() {
+    void showWelcome() {
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
                 + "| | | | | | | |/ / _ \\\n"
@@ -30,11 +30,11 @@ public class Ui {
         greet();
     }
 
-    public String readCommand() {
+    String readCommand() {
         return this.scanner.nextLine();
     }
 
-    public static void greet() {
+    private static void greet() {
         String message = "Hello! I'm Duke.\n     What can I do for you?";
         print(message);
     }
