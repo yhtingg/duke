@@ -3,6 +3,10 @@ package duke;
 import java.util.Hashtable;
 import java.util.regex.Pattern;
 
+/**
+ * Represents a date and time of an event. A <code>Date</code> object corresponds
+ * to a date and time represented as a string e.g. "01/01/2000 0000"
+ */
 public class Date {
     private String date;
     private String time;
@@ -42,10 +46,19 @@ public class Date {
 
     private static Pattern DATE_PATTERN = Pattern.compile("^\\d{2}/\\d{2}/\\d{4} \\d{4}$");
 
+    /**
+     * Returns true if the format of the given string is that of a date.
+     * @param date String to be compared.
+     * @return true if format of given string matches DATE_PATTERN.
+     */
     public static boolean matches(String date) {
         return DATE_PATTERN.matcher(date).matches();
     }
 
+    /**
+     * Returns string representation of the date attribute of a Date.
+     * @return string representation of a date.
+     */
     public String getDate() {
         String[] dmy = this.date.split("/");
         int dayAsInt = Integer.valueOf(dmy[0]);
@@ -59,16 +72,28 @@ public class Date {
         return String.format("%s of %s %s", day, month, dmy[2]);
     }
 
+    /**
+     * Returns string representation of a time attribute of a Date.
+     * @return string representation of a time.
+     */
     public String getTime() {
         int hour = Integer.valueOf(this.time.substring(0,2));
         String min = this.time.substring(2);
         return String.format("%d:%s%s", hour > 12 ? hour % 12 : hour, min, hour > 12 ? "pm" : "am");
     }
 
+    /**
+     * Returns the concatenation of the date and time attributes of a Date.
+     * @return string concatenation of the date and time attributes.
+     */
     public String getRawDate() {
         return this.date + " " + this.time;
     }
 
+    /**
+     * Returns string representation of a Date.
+     * @return string representation of a Date.
+     */
     @Override
     public String toString() {
         return String.format("%s, %s", this.getDate(), this.getTime());

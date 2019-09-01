@@ -10,6 +10,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Represents an add Command. A <code>AddCommand</code> adds a task to the list of tasks.
+ */
 public class AddCommand extends Command {
     private String command;
 
@@ -17,12 +20,25 @@ public class AddCommand extends Command {
         this.command = command;
     }
 
+    /**
+     * Adds a Todo to the task list.
+     * @param task todo to be added.
+     * @param tasks task list to modify.
+     * @return the todo that has been added.
+     */
     public static Todo addTodo(String task, TaskList tasks) {
         Todo todo = new Todo(task);
         tasks.add(todo);
         return todo;
     }
 
+    /**
+     * Adds a Deadline to the task list.
+     * @param task deadline to be added.
+     * @param tasks task list to modify.
+     * @return the deadline that has been added.
+     * @throws DukeException if format of date supplied is invalid.
+     */
     public static Deadline addDeadline(String task, TaskList tasks) throws DukeException {
         String[] attr = task.split(" /by ");
         if (Date.matches(attr[1])) {
@@ -34,6 +50,13 @@ public class AddCommand extends Command {
         }
     }
 
+    /**
+     * Adds an Event to the task list.
+     * @param task event to be added.
+     * @param tasks task list to modify.
+     * @return the event that has been added.
+     * @throws DukeException if format of date supplied is invalid.
+     */
     public static Event addEvent(String task, TaskList tasks) throws DukeException {
         String[] attr = task.split(" /at ");
         if (Date.matches(attr[1])) {
@@ -45,6 +68,14 @@ public class AddCommand extends Command {
         }
     }
 
+    /**
+     * Adds the task into the task list.
+     * @param tasks list of tasks given.
+     * @param ui ui object given.
+     * @param storage storage given.
+     * @throws DukeException if task is empty or user is trying to add something
+     * other than a todo, deadline or event
+     */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         String[] commandList = this.command.split(" ");

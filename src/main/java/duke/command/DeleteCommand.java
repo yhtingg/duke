@@ -6,6 +6,9 @@ import duke.task.Task;
 import java.util.ArrayList;
 import java.util.List;
 
+/** Represents a delete Command. A <code>DeleteCommand</code> deletes a command
+ * from the task list.
+ */
 public class DeleteCommand extends Command {
     private int index;
 
@@ -13,6 +16,13 @@ public class DeleteCommand extends Command {
         this.index = index;
     }
 
+    /**
+     * Deletes a command from the task list.
+     * @param tasks list of tasks given.
+     * @param ui ui object given.
+     * @param storage storage given.
+     * @throws DukeException if the given index is out of range.
+     */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         if (this.index > tasks.getSize()) {

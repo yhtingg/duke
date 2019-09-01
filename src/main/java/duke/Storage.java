@@ -9,6 +9,11 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Represents a Storage for the list of tasks. A <code>Storage</code> object
+ * handles the saving and loading of the data before the exit of Duke and
+ * when Duke is being started up, respectively.
+ */
 public class Storage {
     private String filepath;
 
@@ -16,6 +21,11 @@ public class Storage {
         this.filepath = filepath;
     }
 
+    /**
+     * Loads the task list from the file.
+     * @return task list.
+     * @throws DukeException if file is empty.
+     */
     public List<Task> load() throws DukeException {
         List<Task> tasks = new ArrayList<>();
         try (FileReader reader = new FileReader(this.filepath);
@@ -49,6 +59,10 @@ public class Storage {
         return tasks;
     }
 
+    /**
+     * Saves the current task list into the file.
+     * @param tasks task list to be saved.
+     */
     public void save(TaskList tasks) {
         try (FileWriter writer = new FileWriter(this.filepath);
              BufferedWriter bw = new BufferedWriter(writer)) {
