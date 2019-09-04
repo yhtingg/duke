@@ -61,6 +61,10 @@ public class TaskList {
         this.tasks.remove(index);
     }
 
+    /**
+     * Returns true if the task list is empty, else false.
+     * @return true if the task list is empty, else false.
+     */
     public boolean isEmpty() {
         return this.tasks.size() == 0;
     }
