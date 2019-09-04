@@ -1,6 +1,10 @@
 package duke;
 
-import duke.command.*;
+import duke.command.AddCommand;
+import duke.command.DeleteCommand;
+import duke.command.DoneCommand;
+import duke.command.ExitCommand;
+import duke.command.ListCommand;
 
 import org.junit.jupiter.api.Test;
 
@@ -30,7 +34,8 @@ public class ParserTest {
     @Test
     public void testAddEvent() {
         try {
-            assertEquals(new AddCommand("event team project meeting on 2/10/2019 1400"), Parser.parse("event team project meeting on 2/10/2019 1400"));
+            assertEquals(new AddCommand("event team project meeting on 2/10/2019 1400"),
+                    Parser.parse("event team project meeting on 2/10/2019 1400"));
         } catch (DukeException e) {
             print(e.getMessage());
         }

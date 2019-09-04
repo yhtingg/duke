@@ -1,6 +1,11 @@
 package duke.command;
 
-import duke.*;
+import duke.Date;
+import duke.DukeException;
+import duke.Message;
+import duke.Storage;
+import duke.TaskList;
+import duke.Ui;
 import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.Task;
@@ -74,7 +79,7 @@ public class AddCommand extends Command {
      * @param ui ui object given.
      * @param storage storage given.
      * @throws DukeException if task is empty or user is trying to add something
-     * other than a todo, deadline or event
+     *     other than a todo, deadline or event
      */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {

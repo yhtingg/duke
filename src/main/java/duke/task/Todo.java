@@ -17,7 +17,9 @@ public class Todo extends Task {
      * @return the string representation of the Todo type.
      */
     @Override
-    public String getType() { return "T"; }
+    public String getType() {
+        return "T";
+    }
 
     /**
      * Returns the string representation of a Todo.

@@ -31,7 +31,9 @@ public class Event extends Task {
      * @return the string representation of the Event type.
      */
     @Override
-    public String getType() { return "E"; }
+    public String getType() {
+        return "E";
+    }
 
     /**
      * Returns the string representation of am Event.

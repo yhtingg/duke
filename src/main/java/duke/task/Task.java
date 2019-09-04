@@ -12,9 +12,9 @@ public abstract class Task {
     private boolean done;
 
     private static Hashtable<Boolean, String> icons = new Hashtable<>() {{
-        put(true, "✓");
-        put(false, "✗");
-    }};
+            put(true, "✓");
+            put(false, "✗");
+        }};
 
     public Task(String text) {
         this.text = text;

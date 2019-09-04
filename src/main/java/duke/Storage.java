@@ -5,7 +5,12 @@ import duke.task.Event;
 import duke.task.Task;
 import duke.task.Todo;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.FileReader;
+import java.io.FileWriter;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -71,7 +76,8 @@ public class Storage {
                 if (task instanceof Todo) {
                     line = String.format("%s | %d | %s\n", task.getType(), task.isDone() ? 1 : 0, task.getText());
                 } else {
-                    line = String.format("%s | %d | %s | %s\n", task.getType(), task.isDone() ? 1 : 0, task.getText(), task.getDate().getRawDate());
+                    line = String.format("%s | %d | %s | %s\n", task.getType(), task.isDone() ? 1 : 0, task.getText(),
+                            task.getDate().getRawDate());
                 }
                 bw.write(line);
             }

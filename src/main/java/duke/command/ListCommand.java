@@ -1,6 +1,9 @@
 package duke.command;
 
-import duke.*;
+import duke.Message;
+import duke.Storage;
+import duke.TaskList;
+import duke.Ui;
 import duke.task.Task;
 
 import java.util.ArrayList;
@@ -11,7 +14,8 @@ import java.util.List;
  * in the task list, in a readable table.
  */
 public class ListCommand extends Command {
-    public ListCommand() {}
+    public ListCommand() {
+    }
 
     /**
      * Prints out all the tasks in the task list.

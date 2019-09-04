@@ -1,6 +1,10 @@
 package duke.command;
 
-import duke.*;
+import duke.DukeException;
+import duke.Message;
+import duke.Storage;
+import duke.TaskList;
+import duke.Ui;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +22,7 @@ public abstract class Command {
     }
 
     /**
-     * Returns true if the command is an exit command, else false;
+     * Returns true if the command is an exit command, else false.
      * @return true if the command is an exit command.
      */
     public boolean isExit() {

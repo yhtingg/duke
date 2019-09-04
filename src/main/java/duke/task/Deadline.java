@@ -31,7 +31,9 @@ public class Deadline extends Task {
      * @return the string representation of the Deadline type.
      */
     @Override
-    public String getType() { return "D"; }
+    public String getType() {
+        return "D";
+    }
 
     /**
      * Returns the string representation of a Deadline.

@@ -9,7 +9,8 @@ import duke.Ui;
  * list and prints a goodbye message to the console.
  */
 public class ExitCommand extends Command {
-    public ExitCommand() {}
+    public ExitCommand() {
+    }
 
     /**
      * Saves the current task list and prints and goodbye message.
