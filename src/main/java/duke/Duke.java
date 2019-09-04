@@ -42,6 +42,6 @@ public class Duke {
     }
 
     public static void main(String[] args) {
-        new Duke("../../data/duke.txt").run();
+        new Duke("/home/yhting/2103T/duke/data/duke.txt").run();
     }
 }
