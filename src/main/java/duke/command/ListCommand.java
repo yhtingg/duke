@@ -33,6 +33,6 @@ public class ListCommand extends Command {
             list.add(message);
             index += 1;
         }
-        System.out.println(new Message(list));
+        ui.print(new Message(list));
     }
 }

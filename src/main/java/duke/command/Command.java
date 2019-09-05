@@ -15,12 +15,6 @@ import java.util.List;
  * outcomes as specified by the execution of the command.
  */
 public abstract class Command {
-    static void print(String message) {
-        List<String> list = new ArrayList<>();
-        list.add(message);
-        System.out.println(new Message(list));
-    }
-
     /**
      * Returns true if the command is an exit command, else false.
      * @return true if the command is an exit command.

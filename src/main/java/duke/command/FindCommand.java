@@ -25,7 +25,7 @@ public class FindCommand extends Command {
             }
         }
         if (matchingTasks.isEmpty()) {
-            print(String.format("Sorry! There are no tasks that matches '%s'.", this.keyword));
+            ui.print(String.format("Sorry! There are no tasks that matches '%s'.", this.keyword));
             return;
         }
         List<String> list = new ArrayList<>();
@@ -36,6 +36,6 @@ public class FindCommand extends Command {
             list.add(message);
             index += 1;
         }
-        System.out.println(new Message(list));
+        ui.print(new Message(list));
     }
 }

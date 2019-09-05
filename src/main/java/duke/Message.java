@@ -23,7 +23,7 @@ public class Message {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        String line = "    ____________________________________________________________\n";
+        String line = "    __________________________________________\n";
         sb.append(line);
         for (String string : strings) {
             sb.append(String.format("     %s\n", string));

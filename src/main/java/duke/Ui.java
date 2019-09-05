@@ -10,9 +10,11 @@ import java.util.Scanner;
  */
 public class Ui {
     private Scanner scanner;
+    private MainWindow window;
 
-    Ui() {
+    Ui(MainWindow window) {
         this.scanner = new Scanner(System.in);
+        this.window = window;
     }
 
     /**
@@ -39,7 +41,7 @@ public class Ui {
                 + "| | | | | | | |/ / _ \\\n"
                 + "| |_| | |_| |   <  __/\n"
                 + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println("Hello from\n" + logo);
+        print("Hello from\n" + logo);
 
         greet();
     }
@@ -55,7 +57,7 @@ public class Ui {
     /**
      * Prints a greeting message to the user.
      */
-    public static void greet() {
+    public void greet() {
         String message = "Hello! I'm Duke.\n     What can I do for you?";
         print(message);
     }
@@ -64,9 +66,13 @@ public class Ui {
      * Formats a regular string into a Message.
      * @param message string to be converted.
      */
-    public static void print(String message) {
+    public void print(String message) {
         List<String> list = new ArrayList<>();
         list.add(message);
-        System.out.println(new Message(list));
+        this.window.handleDukeResponse(new Message(list).toString());
+    }
+
+    public void print(Message message) {
+        this.window.handleDukeResponse(message.toString());
     }
 }

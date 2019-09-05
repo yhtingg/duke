@@ -39,6 +39,6 @@ public class DeleteCommand extends Command {
         list.add(String.format("  %s", task));
         String noun = tasks.getSize() > 1 ? "tasks" : "task";
         list.add(String.format("Now you have %d %s in the list.", tasks.getSize(), noun));
-        System.out.println(new Message(list));
+        ui.print(new Message(list));
     }
 }

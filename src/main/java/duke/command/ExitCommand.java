@@ -22,6 +22,6 @@ public class ExitCommand extends Command {
     public void execute(TaskList tasks, Ui ui, Storage storage) {
         storage.save(tasks);
         String message = "Bye. Hope to see you again soon!";
-        print(message);
+        ui.print(message);
     }
 }
