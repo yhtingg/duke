@@ -43,12 +43,15 @@ public class Storage {
                 boolean done = task[1].equals("1");
                 switch (taskType) {
                 case "T":
+                    assert task.length == 3 : String.format(" Wrong number of arguments: expected 3, got %d", task.length);
                     tasks.add(new Todo(text, done));
                     break;
                 case "D":
+                    assert task.length == 4 : String.format(" Wrong number of arguments: expected 4, got %d", task.length);
                     tasks.add(new Deadline(text, done, new Date(task[3])));
                     break;
                 case "E":
+                    assert task.length == 4 : String.format(" Wrong number of arguments: expected 4, got %d", task.length);
                     tasks.add(new Event(text, done, new Date(task[3])));
                     break;
                 default:
