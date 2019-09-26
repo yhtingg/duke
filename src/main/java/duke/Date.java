@@ -67,7 +67,9 @@ public class Date {
         String[] dmy = this.date.split("/");
         int dayAsInt = Integer.parseInt(dmy[0]);
         String day;
-        if (dayAsInt > 10) {
+        if (dayAsInt >= 11 && dayAsInt <= 13) {
+            day = String.format("%dth", dayAsInt);
+        } else if (dayAsInt > 10) {
             day = dmy[0].substring(0,1) + ordinals.get(dayAsInt % 10);
         } else {
             day = ordinals.get(dayAsInt);
@@ -82,8 +84,13 @@ public class Date {
      */
     private String getTime() {
         int hour = Integer.parseInt(this.time.substring(0,2));
+        if (hour == 0) {
+            hour = 12;
+        }
         String min = this.time.substring(2);
-        return String.format("%d:%s%s", hour > 12 ? hour % 12 : hour, min, hour > 12 ? "pm" : "am");
+        return String.format("%d:%s%s", hour == 12 ? hour : hour % 12,
+                                        min,
+                                        hour > 12 ? "pm" : "am");
     }
 
     /**
