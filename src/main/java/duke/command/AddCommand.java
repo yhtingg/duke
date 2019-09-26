@@ -47,8 +47,10 @@ public class AddCommand extends Command {
     private static Deadline addDeadline(String task, TaskList tasks) throws DukeException {
         String[] attr = task.split(" /by ");
         assert attr.length == 2 : " Follow the format deadline {name} /by DD/MM/YYYY {Time in 24 hour format}";
-        if (Datetime.matches(attr[1])) {
-            Deadline deadline = new Deadline(attr[0], new Datetime(attr[1]));
+        String text = attr[0];
+        String datetime = attr[1];
+        if (Datetime.matches(datetime)) {
+            Deadline deadline = new Deadline(text, new Datetime(datetime));
             tasks.add(deadline);
             return deadline;
         } else {
@@ -66,8 +68,10 @@ public class AddCommand extends Command {
     private static Event addEvent(String task, TaskList tasks) throws DukeException {
         String[] attr = task.split(" /at ");
         assert attr.length == 2 : " Follow the format event {name} /at DD/MM/YYYY {Time in 24 hour format}";
-        if (Datetime.matches(attr[1])) {
-            Event event = new Event(attr[0], new Datetime(attr[1]));
+        String text = attr[0];
+        String datetime = attr[1];
+        if (Datetime.matches(datetime)) {
+            Event event = new Event(text, new Datetime(datetime));
             tasks.add(event);
             return event;
         } else {
