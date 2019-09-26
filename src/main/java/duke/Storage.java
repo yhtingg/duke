@@ -37,26 +37,8 @@ public class Storage {
              BufferedReader br = new BufferedReader(reader)) {
             String line;
             while ((line = br.readLine()) != null) {
-                String[] task = line.split(" \\| ");
-                String text = task[2];
-                String taskType = task[0];
-                boolean done = task[1].equals("1");
-                switch (taskType) {
-                case "T":
-                    assert task.length == 3 : String.format(" Wrong number of arguments: expected 3, got %d", task.length);
-                    tasks.add(new Todo(text, done));
-                    break;
-                case "D":
-                    assert task.length == 4 : String.format(" Wrong number of arguments: expected 4, got %d", task.length);
-                    tasks.add(new Deadline(text, done, new Datetime(task[3])));
-                    break;
-                case "E":
-                    assert task.length == 4 : String.format(" Wrong number of arguments: expected 4, got %d", task.length);
-                    tasks.add(new Event(text, done, new Datetime(task[3])));
-                    break;
-                default:
-                    break;
-                }
+                Task task = parseTask(line);
+                tasks.add(task);
             }
             if (tasks.isEmpty()) {
                 throw new DukeException("");
@@ -65,6 +47,32 @@ public class Storage {
             System.err.format("IOException: %s%n", e);
         }
         return tasks;
+    }
+
+    /**
+     * Reads the given string and processes it accordingly to return
+     * an appropriate Task.
+     * @param line given string.
+     * @return matching task as implied from the given string.
+     */
+    private Task parseTask(String line) {
+        String[] task = line.split(" \\| ");
+        String text = task[2];
+        String taskType = task[0];
+        boolean done = task[1].equals("1");
+        switch (taskType) {
+        case "T":
+            assert task.length == 3 : String.format(" Wrong number of arguments: expected 3, got %d", task.length);
+            return new Todo(text, done);
+        case "D":
+            assert task.length == 4 : String.format(" Wrong number of arguments: expected 4, got %d", task.length);
+            return new Deadline(text, done, new Datetime(task[3]));
+        case "E":
+            assert task.length == 4 : String.format(" Wrong number of arguments: expected 4, got %d", task.length);
+            return new Event(text, done, new Datetime(task[3]));
+        default:
+            return null;
+        }
     }
 
     /**

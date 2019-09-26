@@ -80,6 +80,36 @@ public class AddCommand extends Command {
     }
 
     /**
+     * Handles the task appropriately by the task type.
+     * @param tasks task list to modify.
+     * @param taskType type of the task.
+     * @param taskText text of the task.
+     * @return the task that has been added.
+     * @throws DukeException if task text is empty.
+     */
+    private Task addTask(TaskList tasks, String taskType, String taskText) throws DukeException {
+        switch (taskType) {
+        case "todo":
+            if (taskText.isEmpty()) {
+                throw new DukeException("☹ OOPS!!! The description of a todo cannot be empty.");
+            }
+            return addTodo(taskText, tasks);
+        case "deadline":
+            if (taskText.isEmpty()) {
+                throw new DukeException("☹ OOPS!!! The description of a deadline cannot be empty.");
+            }
+            return addDeadline(taskText, tasks);
+        case "event":
+            if (taskText.isEmpty()) {
+                throw new DukeException("☹ OOPS!!! The description of a event cannot be empty.");
+            }
+            return addEvent(taskText, tasks);
+        default:
+            throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
+        }
+    }
+
+    /**
      * Adds the task into the task list.
      * @param tasks list of tasks given.
      * @param ui ui object given.
@@ -92,29 +122,8 @@ public class AddCommand extends Command {
         String[] commandList = this.command.split(" ");
         String taskType = commandList[0];
         String taskText = String.join(" ", Arrays.copyOfRange(commandList, 1, commandList.length));
-        Task task;
-        switch (taskType) {
-        case "todo":
-            if (taskText.isEmpty()) {
-                throw new DukeException("☹ OOPS!!! The description of a todo cannot be empty.");
-            }
-            task = addTodo(taskText, tasks);
-            break;
-        case "deadline":
-            if (taskText.isEmpty()) {
-                throw new DukeException("☹ OOPS!!! The description of a deadline cannot be empty.");
-            }
-            task = addDeadline(taskText, tasks);
-            break;
-        case "event":
-            if (taskText.isEmpty()) {
-                throw new DukeException("☹ OOPS!!! The description of a event cannot be empty.");
-            }
-            task = addEvent(taskText, tasks);
-            break;
-        default:
-            throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
-        }
+        Task task = this.addTask(tasks, taskType, taskText);
+
         List<String> list = new ArrayList<>();
         list.add("Got it. I've added this task:");
         list.add(String.format("  %s", task));
