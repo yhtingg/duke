@@ -61,12 +61,10 @@ public abstract class Task {
      * Returns the Datetime associated with the Task.
      * @return the Datetime associated with the Task.
      */
-    public Datetime getDatetime() {
-        if (this instanceof Deadline || this instanceof Event) {
-            return this.getDatetime();
-        } else {
-            return null;
-        }
+
+    public Date getDatetime() {
+        assert(this instanceof Deadline || this instanceof Event);
+        return this.getDatetime();
     }
 
     /**
