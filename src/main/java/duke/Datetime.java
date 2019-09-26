@@ -4,18 +4,18 @@ import java.util.Hashtable;
 import java.util.regex.Pattern;
 
 /**
- * Represents a date and time of an event. A <code>Date</code> object corresponds
+ * Represents a date and time of an event. A <code>Datetime</code> object corresponds
  * to a date and time represented as a string e.g. "01/01/2000 0000"
  */
-public class Date {
+public class Datetime {
     private String date;
     private String time;
 
     /**
-     * Constructs a Date object from a raw string containing date and time.
+     * Constructs a Datetime object from a raw string containing date and time.
      * @param datetime string containing date and time.
      */
-    public Date(String datetime) {
+    public Datetime(String datetime) {
         String[] content = datetime.split(" ");
         this.date = content[0];
         this.time = content[1];
@@ -51,38 +51,38 @@ public class Date {
     private static Pattern DATE_PATTERN = Pattern.compile("^\\d{2}/\\d{2}/\\d{4} \\d{4}$");
 
     /**
-     * Returns true if the format of the given string is that of a date.
-     * @param date String to be compared.
+     * Returns true if the format of the given string is that of a datetime.
+     * @param datetime String to be compared.
      * @return true if format of given string matches DATE_PATTERN.
      */
-    public static boolean matches(String date) {
-        return DATE_PATTERN.matcher(date).matches();
+    public static boolean matches(String datetime) {
+        return DATE_PATTERN.matcher(datetime).matches();
     }
 
     /**
-     * Returns string representation of the date attribute of a Date.
+     * Returns string representation of the date attribute of a Datetime.
      * @return string representation of a date.
      */
     public String getDate() {
-        String[] dmy = this.date.split("/");
-        int dayAsInt = Integer.parseInt(dmy[0]);
+        String[] dateArr = this.date.split("/");
+        int dayAsInt = Integer.parseInt(dateArr[0]);
         String day;
         if (dayAsInt >= 11 && dayAsInt <= 13) {
             day = String.format("%dth", dayAsInt);
         } else if (dayAsInt > 10) {
-            day = dmy[0].substring(0,1) + ordinals.get(dayAsInt % 10);
+            day = dateArr[0].substring(0,1) + ordinals.get(dayAsInt % 10);
         } else {
             day = ordinals.get(dayAsInt);
         }
-        String month = months.get(Integer.parseInt(dmy[1]));
-        return String.format("%s of %s %s", day, month, dmy[2]);
+        String month = months.get(Integer.parseInt(dateArr[1]));
+        return String.format("%s of %s %s", day, month, dateArr[2]);
     }
 
     /**
-     * Returns string representation of a time attribute of a Date.
+     * Returns string representation of a time attribute of a Datetime.
      * @return string representation of a time.
      */
-    private String getTime() {
+    public String getTime() {
         int hour = Integer.parseInt(this.time.substring(0,2));
         if (hour == 0) {
             hour = 12;
@@ -94,16 +94,16 @@ public class Date {
     }
 
     /**
-     * Returns the concatenation of the date and time attributes of a Date.
+     * Returns the concatenation of the date and time attributes of a Datetime.
      * @return string concatenation of the date and time attributes.
      */
-    public String getRawDate() {
+    public String getRawDatetime() {
         return this.date + " " + this.time;
     }
 
     /**
-     * Returns string representation of a Date.
-     * @return string representation of a Date.
+     * Returns string representation of a Datetime.
+     * @return string representation of a Datetime.
      */
     @Override
     public String toString() {

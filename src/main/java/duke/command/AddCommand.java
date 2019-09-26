@@ -1,6 +1,6 @@
 package duke.command;
 
-import duke.Date;
+import duke.Datetime;
 import duke.DukeException;
 import duke.Message;
 import duke.Storage;
@@ -42,17 +42,17 @@ public class AddCommand extends Command {
      * @param task deadline to be added.
      * @param tasks task list to modify.
      * @return the deadline that has been added.
-     * @throws DukeException if format of date supplied is invalid.
+     * @throws DukeException if format of datetime supplied is invalid.
      */
     private static Deadline addDeadline(String task, TaskList tasks) throws DukeException {
         String[] attr = task.split(" /by ");
         assert attr.length == 2 : " Follow the format deadline {name} /by DD/MM/YYYY {Time in 24 hour format}";
-        if (Date.matches(attr[1])) {
-            Deadline deadline = new Deadline(attr[0], new Date(attr[1]));
+        if (Datetime.matches(attr[1])) {
+            Deadline deadline = new Deadline(attr[0], new Datetime(attr[1]));
             tasks.add(deadline);
             return deadline;
         } else {
-            throw new DukeException("☹ OOPS!!! A valid date was not submitted.");
+            throw new DukeException("☹ OOPS!!! A valid datetime was not submitted.");
         }
     }
 
@@ -61,17 +61,17 @@ public class AddCommand extends Command {
      * @param task event to be added.
      * @param tasks task list to modify.
      * @return the event that has been added.
-     * @throws DukeException if format of date supplied is invalid.
+     * @throws DukeException if format of datetime supplied is invalid.
      */
     private static Event addEvent(String task, TaskList tasks) throws DukeException {
         String[] attr = task.split(" /at ");
         assert attr.length == 2 : " Follow the format event {name} /at DD/MM/YYYY {Time in 24 hour format}";
-        if (Date.matches(attr[1])) {
-            Event event = new Event(attr[0], new Date(attr[1]));
+        if (Datetime.matches(attr[1])) {
+            Event event = new Event(attr[0], new Datetime(attr[1]));
             tasks.add(event);
             return event;
         } else {
-            throw new DukeException("☹ OOPS!!! A valid date was not submitted.");
+            throw new DukeException("☹ OOPS!!! A valid datetime was not submitted.");
         }
     }
 

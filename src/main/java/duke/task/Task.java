@@ -1,7 +1,7 @@
 package duke.task;
 
 import java.util.Hashtable;
-import duke.Date;
+import duke.Datetime;
 
 /**
  * Represents a task in the task list. A <code>Task</code> corresponds to a
@@ -58,12 +58,12 @@ public abstract class Task {
     }
 
     /**
-     * Returns the Date associated with the Task.
-     * @return the Date associated with the Task.
+     * Returns the Datetime associated with the Task.
+     * @return the Datetime associated with the Task.
      */
-    public Date getDate() {
+    public Datetime getDatetime() {
         if (this instanceof Deadline || this instanceof Event) {
-            return this.getDate();
+            return this.getDatetime();
         } else {
             return null;
         }

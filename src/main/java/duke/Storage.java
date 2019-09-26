@@ -48,11 +48,11 @@ public class Storage {
                     break;
                 case "D":
                     assert task.length == 4 : String.format(" Wrong number of arguments: expected 4, got %d", task.length);
-                    tasks.add(new Deadline(text, done, new Date(task[3])));
+                    tasks.add(new Deadline(text, done, new Datetime(task[3])));
                     break;
                 case "E":
                     assert task.length == 4 : String.format(" Wrong number of arguments: expected 4, got %d", task.length);
-                    tasks.add(new Event(text, done, new Date(task[3])));
+                    tasks.add(new Event(text, done, new Datetime(task[3])));
                     break;
                 default:
                     break;
@@ -80,7 +80,7 @@ public class Storage {
                     line = String.format("%s | %d | %s\n", task.getType(), task.isDone() ? 1 : 0, task.getText());
                 } else {
                     line = String.format("%s | %d | %s | %s\n", task.getType(), task.isDone() ? 1 : 0, task.getText(),
-                            task.getDate().getRawDate());
+                            task.getDatetime().getRawDatetime());
                 }
                 bw.write(line);
             }
