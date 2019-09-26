@@ -62,11 +62,8 @@ public abstract class Task {
      * @return the Date associated with the Task.
      */
     public Date getDate() {
-        if (this instanceof Deadline || this instanceof Event) {
-            return this.getDate();
-        } else {
-            return null;
-        }
+        assert(this instanceof Deadline || this instanceof Event);
+        return this.getDate();
     }
 
     /**
