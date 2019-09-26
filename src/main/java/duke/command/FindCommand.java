@@ -1,14 +1,15 @@
 package duke.command;
 
-import duke.Message;
 import duke.Storage;
 import duke.TaskList;
 import duke.Ui;
 import duke.task.Task;
 
-import java.util.ArrayList;
-import java.util.List;
-
+/**
+ * Represents a find Command. A <code>FindCommand</code> has a user-specified
+ * keyword and prints out all the tasks in the task list which contains the
+ * keyword, in a readable table.
+ */
 public class FindCommand extends Command {
     private String keyword;
 
@@ -16,6 +17,12 @@ public class FindCommand extends Command {
         this.keyword = keyword;
     }
 
+    /**
+     * Prints out all the tasks in the task list which contains the keyword.
+     * @param tasks list of tasks given.
+     * @param ui ui object given.
+     * @param storage storage given.
+     */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) {
         TaskList matchingTasks = new TaskList();
@@ -28,14 +35,7 @@ public class FindCommand extends Command {
             ui.print(String.format("Sorry! There are no tasks that matches '%s'.", this.keyword));
             return;
         }
-        List<String> list = new ArrayList<>();
-        list.add("Here are the matching tasks in your list:");
-        int index = 1;
-        for (Task task : matchingTasks.getTasks()) {
-            String message = String.format("%d.%s", index, task);
-            list.add(message);
-            index += 1;
-        }
-        ui.print(new Message(list));
+        ListCommand listCommand = new ListCommand();
+        listCommand.execute(matchingTasks, ui, storage);
     }
 }

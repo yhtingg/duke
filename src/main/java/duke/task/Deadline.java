@@ -1,29 +1,29 @@
 package duke.task;
 
-import duke.Date;
+import duke.Datetime;
 
 /**
  * Represents a deadline in the task list.
  */
 public class Deadline extends Task {
-    private Date date;
+    private Datetime datetime;
 
-    public Deadline(String text, Date date) {
+    public Deadline(String text, Datetime datetime) {
         super(text);
-        this.date = date;
+        this.datetime = datetime;
     }
 
-    public Deadline(String text, boolean done, Date date) {
+    public Deadline(String text, boolean done, Datetime datetime) {
         super(text, done);
-        this.date = date;
+        this.datetime = datetime;
     }
 
     /**
-     * Returns the Date associated with the Deadline.
-     * @return the Date associated with the Deadline.
+     * Returns the Datetime associated with the Deadline.
+     * @return the Datetime associated with the Deadline.
      */
-    public Date getDate() {
-        return this.date;
+    public Datetime getDatetime() {
+        return this.datetime;
     }
 
     /**
@@ -41,6 +41,6 @@ public class Deadline extends Task {
      */
     @Override
     public String toString() {
-        return String.format("[D][%s] %s (by: %s)", this.getIcon(), this.getText(), this.date);
+        return String.format("[D][%s] %s (by: %s)", this.getIcon(), this.getText(), this.datetime);
     }
 }

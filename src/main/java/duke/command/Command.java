@@ -1,13 +1,9 @@
 package duke.command;
 
 import duke.DukeException;
-import duke.Message;
 import duke.Storage;
 import duke.TaskList;
 import duke.Ui;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Represents a command to be executed by Duke. A <code>Command</code> corresponds

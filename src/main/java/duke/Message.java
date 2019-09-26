@@ -2,7 +2,6 @@ package duke;
 
 import java.lang.StringBuilder;
 import java.util.List;
-import java.util.ArrayList;
 
 /**
  * Represents a formatted message to be printed by Duke. A <code>Message</code>
@@ -23,12 +22,12 @@ public class Message {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        String line = "    __________________________________________\n";
-        sb.append(line);
+        String border = "    __________________________________________\n";
+        sb.append(border);
         for (String string : strings) {
             sb.append(String.format("     %s\n", string));
         }
-        sb.append(line);
+        sb.append(border);
         return sb.toString();
     }
 }

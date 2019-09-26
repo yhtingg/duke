@@ -1,29 +1,29 @@
 package duke.task;
 
-import duke.Date;
+import duke.Datetime;
 
 /**
  * Represents an Event in the task list.
  */
 public class Event extends Task {
-    private Date date;
+    private Datetime datetime;
 
-    public Event(String text, Date date) {
+    public Event(String text, Datetime datetime) {
         super(text);
-        this.date = date;
+        this.datetime = datetime;
     }
 
-    public Event(String text, boolean done, Date date) {
+    public Event(String text, boolean done, Datetime datetime) {
         super(text, done);
-        this.date = date;
+        this.datetime = datetime;
     }
 
     /**
-     * Returns the Date associated with the Event.
-     * @return the Date associated with the Event.
+     * Returns the Datetime associated with the Event.
+     * @return the Datetime associated with the Event.
      */
-    public Date getDate() {
-        return this.date;
+    public Datetime getDatetime() {
+        return this.datetime;
     }
 
     /**
@@ -41,6 +41,6 @@ public class Event extends Task {
      */
     @Override
     public String toString() {
-        return String.format("[E][%s] %s (at: %s)", this.getIcon(), this.getText(), this.date);
+        return String.format("[E][%s] %s (at: %s)", this.getIcon(), this.getText(), this.datetime);
     }
 }

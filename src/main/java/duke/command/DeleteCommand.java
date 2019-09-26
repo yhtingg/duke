@@ -35,6 +35,7 @@ public class DeleteCommand extends Command {
         assert this.index >= 0 && this.index <= tasks.getSize() : "Index is out of range.";
         Task task = tasks.get(this.index - 1);
         tasks.remove(this.index - 1);
+
         List<String> list = new ArrayList<>();
         list.add("Noted. I've removed this task:");
         list.add(String.format("  %s", task));

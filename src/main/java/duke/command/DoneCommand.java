@@ -36,6 +36,7 @@ public class DoneCommand extends Command {
         assert this.index >= 0 && this.index <= tasks.getSize() : "Index is out of range.";
         Task task = tasks.get(this.index - 1);
         task.markAsDone();
+
         List<String> list = new ArrayList<>();
         list.add("Nice! I've marked this task as done:");
         list.add(String.format("  %s", task));
