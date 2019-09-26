@@ -2,7 +2,6 @@ package duke;
 
 import java.lang.StringBuilder;
 import java.util.List;
-import java.util.ArrayList;
 
 /**
  * Represents a formatted message to be printed by Duke. A <code>Message</code>
