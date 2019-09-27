@@ -24,4 +24,14 @@ public class ExitCommand extends Command {
         String message = "Bye. Hope to see you again soon!";
         ui.print(message);
     }
+
+    /**
+     * Overriding equals to compare two ExitCommand objects.
+     * @param o object to be compared with current ExitCommand instance.
+     * @return True if o is an instance of ExitCommand.
+     */
+    @Override
+    public boolean equals(Object o) {
+        return o instanceof ExitCommand;
+    }
 }

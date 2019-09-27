@@ -42,4 +42,14 @@ public class DoneCommand extends Command {
         list.add(String.format("  %s", task));
         ui.print(new Message(list));
     }
+
+    /**
+     * Overriding equals to compare two DoneCommand objects.
+     * @param o object to be compared with current DoneCommand instance.
+     * @return True if the index is equivalent.
+     */
+    @Override
+    public boolean equals(Object o) {
+        return o instanceof DoneCommand && this.index == ((DoneCommand) o).index;
+    }
 }

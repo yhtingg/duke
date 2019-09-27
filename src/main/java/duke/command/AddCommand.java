@@ -131,4 +131,14 @@ public class AddCommand extends Command {
         list.add(String.format("Now you have %d %s in the list.", tasks.getSize(), noun));
         ui.print(new Message(list));
     }
+
+    /**
+     * Overriding equals to compare two AddCommand objects.
+     * @param o object to be compared with current AddCommand instance.
+     * @return True if the text is equivalent.
+     */
+    @Override
+    public boolean equals(Object o) {
+        return o instanceof AddCommand && this.command.equals(((AddCommand) o).command);
+    }
 }

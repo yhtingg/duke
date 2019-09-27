@@ -38,4 +38,14 @@ public class FindCommand extends Command {
         ListCommand listCommand = new ListCommand();
         listCommand.execute(matchingTasks, ui, storage);
     }
+
+    /**
+     * Overriding equals to compare two FindCommand objects.
+     * @param o object to be compared with current FindCommand instance.
+     * @return True if the keyword is equivalent.
+     */
+    @Override
+    public boolean equals(Object o) {
+        return o instanceof FindCommand && this.keyword == ((FindCommand) o).keyword;
+    }
 }

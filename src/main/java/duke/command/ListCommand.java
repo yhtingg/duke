@@ -19,8 +19,9 @@ public class ListCommand extends Command {
 
     /**
      * Prints out all the tasks in the task list.
-     * @param tasks list of tasks given.
-     * @param ui ui object given.
+     *
+     * @param tasks   list of tasks given.
+     * @param ui      ui object given.
      * @param storage storage given.
      */
     @Override
@@ -34,5 +35,16 @@ public class ListCommand extends Command {
             index += 1;
         }
         ui.print(new Message(list));
+    }
+
+    /**
+     * Overriding equals to compare two ListCommand objects.
+     *
+     * @param o object to be compared with current ListCommand instance.
+     * @return True if o is an instance of ListCommand.
+     */
+    @Override
+    public boolean equals(Object o) {
+        return o instanceof ListCommand;
     }
 }

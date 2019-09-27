@@ -43,4 +43,14 @@ public class DeleteCommand extends Command {
         list.add(String.format("Now you have %d %s in the list.", tasks.getSize(), noun));
         ui.print(new Message(list));
     }
+
+    /**
+     * Overriding equals to compare two DeleteCommand objects.
+     * @param o object to be compared with current DeleteCommand instance.
+     * @return True if the index is equivalent.
+     */
+    @Override
+    public boolean equals(Object o) {
+        return o instanceof DeleteCommand && this.index == ((DeleteCommand) o).index;
+    }
 }
