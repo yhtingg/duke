@@ -51,10 +51,22 @@ public class DialogBox extends HBox {
         setAlignment(Pos.TOP_LEFT);
     }
 
+    /**
+     * Creates a DialogBox with the specified text and image.
+     * @param text text specified by user.
+     * @param img user image.
+     * @return DialogBox to be rendered in GUI.
+     */
     public static DialogBox getUserDialog(String text, Image img) {
         return new DialogBox(text, img);
     }
 
+    /**
+     * Creates a DialogBox with the specified text and image.
+     * @param text text returned by Duke.
+     * @param img Duke image.
+     * @return DialogBox to be rendered in GUI.
+     */
     public static DialogBox getDukeDialog(String text, Image img) {
         var db = new DialogBox(text, img);
         db.dialog.setFont(new Font("Consolas", 12));

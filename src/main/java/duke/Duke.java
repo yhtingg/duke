@@ -35,6 +35,12 @@ public class Duke extends Application {
     public Duke() {
     }
 
+    /**
+     * Constructor for Duke instance that creates a task list from the given
+     * file path and has a GUI.
+     * @param filePath path of the storage txt file
+     * @param window GUI on the ui.
+     */
     public Duke(String filePath, MainWindow window) {
         ui = new Ui(window);
         storage = new Storage(filePath);
@@ -129,8 +135,9 @@ public class Duke extends Application {
     }
 
     /**
-     * Creates two dialog boxes, one echoing user input and the other containing duke.Duke's reply and then appends them to
-     * the dialog container. Clears the user input after processing.
+     * Creates two dialog boxes, one echoing user input and the other
+     * containing Duke's reply and then appends them to the dialog
+     * container. Clears the user input after processing.
      */
     protected void handleUserCommand(String fullCommand) {
         try {
