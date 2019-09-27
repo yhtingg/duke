@@ -84,13 +84,10 @@ public class Datetime {
      */
     public String getTime() {
         int hour = Integer.parseInt(this.time.substring(0,2));
-        if (hour == 0) {
-            hour = 12;
-        }
         String min = this.time.substring(2);
-        return String.format("%d:%s%s", hour == 12 ? hour : hour % 12,
+        return String.format("%d:%s%s", hour == 12 || hour == 0 ? 12 : hour % 12,
                                         min,
-                                        hour > 12 ? "pm" : "am");
+                                        hour > 11 ? "pm" : "am");
     }
 
     /**
