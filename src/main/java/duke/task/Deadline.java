@@ -22,6 +22,7 @@ public class Deadline extends Task {
      * Returns the Datetime associated with the Deadline.
      * @return the Datetime associated with the Deadline.
      */
+    @Override
     public Datetime getDatetime() {
         return this.datetime;
     }

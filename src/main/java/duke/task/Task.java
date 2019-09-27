@@ -62,10 +62,7 @@ public abstract class Task {
      * @return the Datetime associated with the Task.
      */
 
-    public Datetime getDatetime() {
-        assert (this instanceof Deadline || this instanceof Event);
-        return this.getDatetime();
-    }
+    public abstract Datetime getDatetime();
 
     /**
      * Returns the string representation of the type of Task.

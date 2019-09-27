@@ -1,5 +1,7 @@
 package duke.task;
 
+import duke.Datetime;
+
 /**
  * Represents a Todo in the task list.
  */
@@ -10,6 +12,15 @@ public class Todo extends Task {
 
     public Todo(String text, boolean done) {
         super(text, done);
+    }
+
+    /**
+     * Returns the Datetime associated with a Todo, which is null.
+     * @return null.
+     */
+    @Override
+    public Datetime getDatetime() {
+        return null;
     }
 
     /**
