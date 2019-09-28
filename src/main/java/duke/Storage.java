@@ -79,11 +79,11 @@ public class Storage {
      * Saves the current task list into the file.
      * @param tasks task list to be saved.
      */
-    public void save(TaskList tasks) {
+    public void save(List<Task> tasks) {
         try (FileWriter writer = new FileWriter(this.filepath);
              BufferedWriter bw = new BufferedWriter(writer)) {
             String line;
-            for (Task task : tasks.getTasks()) {
+            for (Task task : tasks) {
                 if (task instanceof Todo) {
                     line = String.format("%s | %d | %s\n", task.getType(), task.isDone() ? 1 : 0, task.getText());
                 } else {

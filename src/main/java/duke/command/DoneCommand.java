@@ -3,7 +3,6 @@ package duke.command;
 import duke.DukeException;
 import duke.Message;
 import duke.Storage;
-import duke.TaskList;
 import duke.Ui;
 import duke.task.Task;
 
@@ -29,11 +28,11 @@ public class DoneCommand extends Command {
      * @throws DukeException if the given index is out of range.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
-        if (this.index > tasks.getSize()) {
+    public void execute(List<Task> tasks, Ui ui, Storage storage) throws DukeException {
+        if (this.index > tasks.size()) {
             throw new DukeException("☹ OOPS!!! There is no such task.");
         }
-        assert this.index >= 0 && this.index <= tasks.getSize() : "Index is out of range.";
+        assert this.index >= 0 && this.index <= tasks.size() : "Index is out of range.";
         Task task = tasks.get(this.index - 1);
         task.markAsDone();
 

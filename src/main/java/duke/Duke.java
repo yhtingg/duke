@@ -2,6 +2,7 @@ package duke;
 
 import duke.command.Command;
 
+import duke.task.Task;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -13,6 +14,9 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Represents a Duke object. <code>Duke</code> is a virtual assistant which allows
  * users to input their todos, deadlines and events. Users can track the completion
@@ -20,7 +24,7 @@ import javafx.stage.Stage;
  */
 public class Duke extends Application {
     private Storage storage;
-    private TaskList tasks;
+    private List<Task> tasks;
     private Ui ui;
 
     private ScrollPane scrollPane;
@@ -45,10 +49,10 @@ public class Duke extends Application {
         ui = new Ui(window);
         storage = new Storage(filePath);
         try {
-            tasks = new TaskList(storage.load());
+            tasks = new ArrayList<>(storage.load());
         } catch (DukeException e) {
             ui.showLoadingError();
-            tasks = new TaskList();
+            tasks = new ArrayList<Task>();
         }
     }
 

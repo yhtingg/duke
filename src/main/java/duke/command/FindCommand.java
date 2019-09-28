@@ -1,9 +1,11 @@
 package duke.command;
 
 import duke.Storage;
-import duke.TaskList;
 import duke.Ui;
 import duke.task.Task;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Represents a find Command. A <code>FindCommand</code> has a user-specified
@@ -24,9 +26,9 @@ public class FindCommand extends Command {
      * @param storage storage given.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
-        TaskList matchingTasks = new TaskList();
-        for (Task task : tasks.getTasks()) {
+    public void execute(List<Task> tasks, Ui ui, Storage storage) {
+        List<Task> matchingTasks = new ArrayList<>();
+        for (Task task : tasks) {
             if (task.getText().contains(this.keyword)) {
                 matchingTasks.add(task);
             }

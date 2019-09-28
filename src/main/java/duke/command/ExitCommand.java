@@ -1,8 +1,10 @@
 package duke.command;
 
 import duke.Storage;
-import duke.TaskList;
 import duke.Ui;
+import duke.task.Task;
+
+import java.util.List;
 
 /**
  * Represents an exit Command. An <code>ExitCommand</code> saves the current task
@@ -19,7 +21,7 @@ public class ExitCommand extends Command {
      * @param storage storage given.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
+    public void execute(List<Task> tasks, Ui ui, Storage storage) {
         storage.save(tasks);
         String message = "Bye. Hope to see you again soon!";
         ui.print(message);

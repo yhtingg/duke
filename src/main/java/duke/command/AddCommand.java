@@ -4,7 +4,6 @@ import duke.Datetime;
 import duke.DukeException;
 import duke.Message;
 import duke.Storage;
-import duke.TaskList;
 import duke.Ui;
 import duke.task.Deadline;
 import duke.task.Event;
@@ -31,7 +30,7 @@ public class AddCommand extends Command {
      * @param tasks task list to modify.
      * @return the todo that has been added.
      */
-    private static Todo addTodo(String task, TaskList tasks) {
+    private static Todo addTodo(String task, List<Task> tasks) {
         Todo todo = new Todo(task);
         tasks.add(todo);
         return todo;
@@ -44,7 +43,7 @@ public class AddCommand extends Command {
      * @return the deadline that has been added.
      * @throws DukeException if format of datetime supplied is invalid.
      */
-    private static Deadline addDeadline(String task, TaskList tasks) throws DukeException {
+    private static Deadline addDeadline(String task, List<Task> tasks) throws DukeException {
         String[] attr = task.split(" /by ");
         assert attr.length == 2 : " Follow the format deadline {name} /by DD/MM/YYYY {Time in 24 hour format}";
         String text = attr[0];
@@ -65,7 +64,7 @@ public class AddCommand extends Command {
      * @return the event that has been added.
      * @throws DukeException if format of datetime supplied is invalid.
      */
-    private static Event addEvent(String task, TaskList tasks) throws DukeException {
+    private static Event addEvent(String task, List<Task> tasks) throws DukeException {
         String[] attr = task.split(" /at ");
         assert attr.length == 2 : " Follow the format event {name} /at DD/MM/YYYY {Time in 24 hour format}";
         String text = attr[0];
@@ -87,7 +86,7 @@ public class AddCommand extends Command {
      * @return the task that has been added.
      * @throws DukeException if task text is empty.
      */
-    private Task addTask(TaskList tasks, String taskType, String taskText) throws DukeException {
+    private Task addTask(List<Task> tasks, String taskType, String taskText) throws DukeException {
         switch (taskType) {
         case "todo":
             if (taskText.isEmpty()) {
@@ -118,7 +117,7 @@ public class AddCommand extends Command {
      *     other than a todo, deadline or event
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public void execute(List<Task> tasks, Ui ui, Storage storage) throws DukeException {
         String[] commandList = this.command.split(" ");
         String taskType = commandList[0];
         String taskText = String.join(" ", Arrays.copyOfRange(commandList, 1, commandList.length));
@@ -127,8 +126,8 @@ public class AddCommand extends Command {
         List<String> list = new ArrayList<>();
         list.add("Got it. I've added this task:");
         list.add(String.format("  %s", task));
-        String noun = tasks.getSize() > 1 ? "tasks" : "task";
-        list.add(String.format("Now you have %d %s in the list.", tasks.getSize(), noun));
+        String noun = tasks.size() > 1 ? "tasks" : "task";
+        list.add(String.format("Now you have %d %s in the list.", tasks.size(), noun));
         ui.print(new Message(list));
     }
 

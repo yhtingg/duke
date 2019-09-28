@@ -2,8 +2,10 @@ package duke.command;
 
 import duke.DukeException;
 import duke.Storage;
-import duke.TaskList;
 import duke.Ui;
+import duke.task.Task;
+
+import java.util.List;
 
 /**
  * Represents a command to be executed by Duke. A <code>Command</code> corresponds
@@ -26,5 +28,5 @@ public abstract class Command {
      * @param storage storage given.
      * @throws DukeException if the command is unable to execute completely.
      */
-    public abstract void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException;
+    public abstract void execute(List<Task> tasks, Ui ui, Storage storage) throws DukeException;
 }
