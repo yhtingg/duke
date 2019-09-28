@@ -1,6 +1,7 @@
 package duke.command;
 
 import duke.DukeException;
+import duke.ListStoreModel;
 import duke.Message;
 import duke.Storage;
 import duke.Ui;
@@ -13,7 +14,7 @@ import java.util.List;
  * Represents a done Command. A <code>DoneCommand</code> marks a task in the task
  * list as complete.
  */
-public class DoneCommand extends Command<List<Task>> {
+public class DoneCommand extends Command {
     private int index;
 
     public DoneCommand(int index) {
@@ -22,13 +23,14 @@ public class DoneCommand extends Command<List<Task>> {
 
     /**
      * Marks a task in the task list as complete.
-     * @param tasks list of tasks given.
+     * @param lists taskList and peopleList given.
      * @param ui ui object given.
      * @param storage storage given.
      * @throws DukeException if the given index is out of range.
      */
     @Override
-    public void execute(List<Task> tasks, Ui ui, Storage storage) throws DukeException {
+    public void execute(ListStoreModel lists, Ui ui, Storage storage) throws DukeException {
+        List<Task> tasks = lists.taskList;
         if (this.index > tasks.size()) {
             throw new DukeException("☹ OOPS!!! There is no such task.");
         }

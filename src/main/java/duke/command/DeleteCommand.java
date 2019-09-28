@@ -1,6 +1,7 @@
 package duke.command;
 
 import duke.DukeException;
+import duke.ListStoreModel;
 import duke.Message;
 import duke.Storage;
 import duke.Ui;
@@ -12,7 +13,7 @@ import java.util.List;
 /** Represents a delete Command. A <code>DeleteCommand</code> deletes a command
  * from the task list.
  */
-public class DeleteCommand extends Command<List<Task>> {
+public class DeleteCommand extends Command {
     private int index;
 
     public DeleteCommand(int index) {
@@ -21,13 +22,14 @@ public class DeleteCommand extends Command<List<Task>> {
 
     /**
      * Deletes a command from the task list.
-     * @param tasks list of tasks given.
+     * @param lists taskList and peopleList given.
      * @param ui ui object given.
      * @param storage storage given.
      * @throws DukeException if the given index is out of range.
      */
     @Override
-    public void execute(List<Task> tasks, Ui ui, Storage storage) throws DukeException {
+    public void execute(ListStoreModel lists, Ui ui, Storage storage) throws DukeException {
+        List<Task> tasks = lists.taskList;
         if (this.index > tasks.size()) {
             throw new DukeException("☹ OOPS!!! There is no such task.");
         }

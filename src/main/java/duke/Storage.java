@@ -4,6 +4,7 @@ import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.Task;
 import duke.task.Todo;
+import duke.expense.Person;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -11,7 +12,6 @@ import java.io.IOException;
 import java.io.FileReader;
 import java.io.FileWriter;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -31,55 +31,72 @@ public class Storage {
      * @return task list.
      * @throws DukeException if file is empty.
      */
-    public List<Task> load() throws DukeException {
-        List<Task> tasks = new ArrayList<>();
+    public ListStoreModel load() throws DukeException {
+        ListStoreModel lists = new ListStoreModel();
         try (FileReader reader = new FileReader(this.filepath);
              BufferedReader br = new BufferedReader(reader)) {
             String line;
             while ((line = br.readLine()) != null) {
-                Task task = parseTask(line);
-                tasks.add(task);
+                lists = handleInput(line, lists);
             }
-            if (tasks.isEmpty()) {
+            if (lists.taskList.isEmpty()) {
                 throw new DukeException("");
             }
         } catch (IOException e) {
             System.err.format("IOException: %s%n", e);
         }
-        return tasks;
+        return lists;
+    }
+
+    private ListStoreModel handleInput(String input, ListStoreModel lists) {
+        String[] attr = input.split(" \\| ");
+        if (attr.length == 2) {
+            Person person = parsePerson(attr);
+            lists.peopleList.add(person);
+        } else if (attr.length == 3 || attr.length == 4) {
+            Task task = parseTask(attr);
+            lists.taskList.add(task);
+        }
+        return lists;
     }
 
     /**
      * Reads the given string and processes it accordingly to return
      * an appropriate Task.
-     * @param line given string.
+     * @param attr attributes of the given string.
      * @return matching task as implied from the given string.
      */
-    private Task parseTask(String line) {
-        String[] task = line.split(" \\| ");
-        String text = task[2];
-        String taskType = task[0];
-        boolean done = task[1].equals("1");
+    private Task parseTask(String[] attr) {
+        String text = attr[2];
+        String taskType = attr[0];
+        boolean done = attr[1].equals("1");
         switch (taskType) {
         case "T":
-            assert task.length == 3 : String.format(" Wrong number of arguments: expected 3, got %d", task.length);
+            assert attr.length == 3 : String.format(" Wrong number of arguments: expected 3, got %d", attr.length);
             return new Todo(text, done);
         case "D":
-            assert task.length == 4 : String.format(" Wrong number of arguments: expected 4, got %d", task.length);
-            return new Deadline(text, done, new Datetime(task[3]));
+            assert attr.length == 4 : String.format(" Wrong number of arguments: expected 4, got %d", attr.length);
+            return new Deadline(text, done, new Datetime(attr[3]));
         case "E":
-            assert task.length == 4 : String.format(" Wrong number of arguments: expected 4, got %d", task.length);
-            return new Event(text, done, new Datetime(task[3]));
+            assert attr.length == 4 : String.format(" Wrong number of arguments: expected 4, got %d", attr.length);
+            return new Event(text, done, new Datetime(attr[3]));
         default:
             return null;
         }
+    }
+
+    private Person parsePerson(String[] attr) {
+        assert attr.length == 2 : String.format(" Wrong number or arguments: expected 2, got %d", attr.length);
+        String name = attr[0];
+        double amount = Double.parseDouble(attr[1]);
+        return new Person(name, amount);
     }
 
     /**
      * Saves the current task list into the file.
      * @param tasks task list to be saved.
      */
-    public void save(List<Task> tasks) {
+    public void save(List<Task> tasks, List<Person> people) {
         try (FileWriter writer = new FileWriter(this.filepath);
              BufferedWriter bw = new BufferedWriter(writer)) {
             String line;
@@ -90,6 +107,10 @@ public class Storage {
                     line = String.format("%s | %d | %s | %s\n", task.getType(), task.isDone() ? 1 : 0, task.getText(),
                             task.getDatetime().getRawDatetime());
                 }
+                bw.write(line);
+            }
+            for (Person person : people) {
+                line = String.format("%s | %.2f\n", person.getName(), person.getAmountOwed());
                 bw.write(line);
             }
         } catch (IOException e) {

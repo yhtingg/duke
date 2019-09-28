@@ -24,7 +24,7 @@ import java.util.List;
  */
 public class Duke extends Application {
     private Storage storage;
-    private List<Task> tasks;
+    private ListStoreModel lists;
     private Ui ui;
 
     private ScrollPane scrollPane;
@@ -49,10 +49,9 @@ public class Duke extends Application {
         ui = new Ui(window);
         storage = new Storage(filePath);
         try {
-            tasks = new ArrayList<>(storage.load());
+            lists = storage.load();
         } catch (DukeException e) {
             ui.showLoadingError();
-            tasks = new ArrayList<Task>();
         }
     }
 
@@ -69,7 +68,7 @@ public class Duke extends Application {
             try {
                 String fullCommand = ui.readCommand();
                 Command c = Parser.parse(fullCommand);
-                c.execute(tasks, ui, storage);
+                c.execute(lists, ui, storage);
                 isExit = c.isExit();
             } catch (DukeException e) {
                 ui.showError(e.getMessage());
@@ -146,7 +145,7 @@ public class Duke extends Application {
     protected void handleUserCommand(String fullCommand) {
         try {
             Command c = Parser.parse(fullCommand);
-            c.execute(tasks, ui, storage);
+            c.execute(lists, ui, storage);
         } catch (DukeException e) {
             ui.showError(e.getMessage());
         }

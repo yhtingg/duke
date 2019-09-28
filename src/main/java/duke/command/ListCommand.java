@@ -1,5 +1,6 @@
 package duke.command;
 
+import duke.ListStoreModel;
 import duke.Message;
 import duke.Storage;
 import duke.Ui;
@@ -12,19 +13,24 @@ import java.util.List;
  * Represents a list Command. A <code>ListCommand</code> prints out all the tasks
  * in the task list, in a readable table.
  */
-public class ListCommand extends Command<List<Task>> {
+public class ListCommand extends Command {
     public ListCommand() {
     }
 
     /**
      * Prints out all the tasks in the task list.
-     *
-     * @param tasks   list of tasks given.
-     * @param ui      ui object given.
+     * @param lists taskList and peopleList given.
+     * @param ui ui object given.
      * @param storage storage given.
      */
     @Override
-    public void execute(List<Task> tasks, Ui ui, Storage storage) {
+    public void execute(ListStoreModel lists, Ui ui, Storage storage) {
+        List<Task> tasks = lists.taskList;
+        if (tasks.isEmpty()) {
+            ui.print("There are no tasks currently. :)");
+            return;
+        }
+
         List<String> list = new ArrayList<>();
         list.add("Here are the tasks in your list:");
         int index = 1;

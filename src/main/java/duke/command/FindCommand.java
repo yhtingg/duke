@@ -1,5 +1,6 @@
 package duke.command;
 
+import duke.ListStoreModel;
 import duke.Storage;
 import duke.Ui;
 import duke.task.Task;
@@ -12,7 +13,7 @@ import java.util.List;
  * keyword and prints out all the tasks in the task list which contains the
  * keyword, in a readable table.
  */
-public class FindCommand extends Command<List<Task>> {
+public class FindCommand extends Command {
     private String keyword;
 
     public FindCommand(String keyword) {
@@ -21,12 +22,13 @@ public class FindCommand extends Command<List<Task>> {
 
     /**
      * Prints out all the tasks in the task list which contains the keyword.
-     * @param tasks list of tasks given.
+     * @param lists taskList and peopleList given.
      * @param ui ui object given.
      * @param storage storage given.
      */
     @Override
-    public void execute(List<Task> tasks, Ui ui, Storage storage) {
+    public void execute(ListStoreModel lists, Ui ui, Storage storage) {
+        List<Task> tasks = lists.taskList;
         List<Task> matchingTasks = new ArrayList<>();
         for (Task task : tasks) {
             if (task.getText().contains(this.keyword)) {
@@ -38,7 +40,7 @@ public class FindCommand extends Command<List<Task>> {
             return;
         }
         ListCommand listCommand = new ListCommand();
-        listCommand.execute(matchingTasks, ui, storage);
+        listCommand.execute(new ListStoreModel(matchingTasks), ui, storage);
     }
 
     /**

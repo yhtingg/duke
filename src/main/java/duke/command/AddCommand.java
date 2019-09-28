@@ -2,13 +2,14 @@ package duke.command;
 
 import duke.Datetime;
 import duke.DukeException;
+import duke.ListStoreModel;
 import duke.Message;
 import duke.Storage;
-import duke.Ui;
 import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.Task;
 import duke.task.Todo;
+import duke.Ui;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -17,7 +18,7 @@ import java.util.List;
 /**
  * Represents an add Command. A <code>AddCommand</code> adds a task to the list of tasks.
  */
-public class AddCommand extends Command<List<Task>> {
+public class AddCommand extends Command {
     private String command;
 
     public AddCommand(String command) {
@@ -110,14 +111,15 @@ public class AddCommand extends Command<List<Task>> {
 
     /**
      * Adds the task into the task list.
-     * @param tasks list of tasks given.
+     * @param lists taskList and peopleList given.
      * @param ui ui object given.
      * @param storage storage given.
      * @throws DukeException if task is empty or user is trying to add something
      *     other than a todo, deadline or event
      */
     @Override
-    public void execute(List<Task> tasks, Ui ui, Storage storage) throws DukeException {
+    public void execute(ListStoreModel lists, Ui ui, Storage storage) throws DukeException {
+        List<Task> tasks = lists.taskList;
         String[] commandList = this.command.split(" ");
         String taskType = commandList[0];
         String taskText = String.join(" ", Arrays.copyOfRange(commandList, 1, commandList.length));
