@@ -22,6 +22,7 @@ public class Datetime {
     }
 
     private static Hashtable<Integer, String> ordinals = new Hashtable<>() {{
+            put(0, "0th");
             put(1, "1st");
             put(2, "2nd");
             put(3, "3rd");
