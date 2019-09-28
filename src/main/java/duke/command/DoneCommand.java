@@ -13,7 +13,7 @@ import java.util.List;
  * Represents a done Command. A <code>DoneCommand</code> marks a task in the task
  * list as complete.
  */
-public class DoneCommand extends Command {
+public class DoneCommand extends Command<List<Task>> {
     private int index;
 
     public DoneCommand(int index) {

@@ -12,7 +12,7 @@ import java.util.List;
 /** Represents a delete Command. A <code>DeleteCommand</code> deletes a command
  * from the task list.
  */
-public class DeleteCommand extends Command {
+public class DeleteCommand extends Command<List<Task>> {
     private int index;
 
     public DeleteCommand(int index) {

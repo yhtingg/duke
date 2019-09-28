@@ -10,7 +10,7 @@ import java.util.List;
  * Represents an exit Command. An <code>ExitCommand</code> saves the current task
  * list and prints a goodbye message to the console.
  */
-public class ExitCommand extends Command {
+public class ExitCommand extends Command<List<Task>> {
     public ExitCommand() {
     }
 

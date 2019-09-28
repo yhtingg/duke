@@ -12,7 +12,7 @@ import java.util.List;
  * Represents a list Command. A <code>ListCommand</code> prints out all the tasks
  * in the task list, in a readable table.
  */
-public class ListCommand extends Command {
+public class ListCommand extends Command<List<Task>> {
     public ListCommand() {
     }
 

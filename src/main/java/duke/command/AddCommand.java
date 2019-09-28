@@ -17,7 +17,7 @@ import java.util.List;
 /**
  * Represents an add Command. A <code>AddCommand</code> adds a task to the list of tasks.
  */
-public class AddCommand extends Command {
+public class AddCommand extends Command<List<Task>> {
     private String command;
 
     public AddCommand(String command) {

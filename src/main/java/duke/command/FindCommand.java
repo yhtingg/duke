@@ -12,7 +12,7 @@ import java.util.List;
  * keyword and prints out all the tasks in the task list which contains the
  * keyword, in a readable table.
  */
-public class FindCommand extends Command {
+public class FindCommand extends Command<List<Task>> {
     private String keyword;
 
     public FindCommand(String keyword) {
@@ -48,6 +48,6 @@ public class FindCommand extends Command {
      */
     @Override
     public boolean equals(Object o) {
-        return o instanceof FindCommand && this.keyword == ((FindCommand) o).keyword;
+        return o instanceof FindCommand && this.keyword.equals(((FindCommand) o).keyword);
     }
 }
