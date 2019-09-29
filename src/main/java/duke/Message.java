@@ -22,8 +22,14 @@ public class Message {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
+        boolean isFirst = true;
         for (String string : strings) {
-            sb.append(String.format("%s\n", string));
+            if (isFirst) {
+                isFirst = false;
+                sb.append(string);
+            } else {
+                sb.append(String.format("\n%s", string));
+            }
         }
         return sb.toString();
     }

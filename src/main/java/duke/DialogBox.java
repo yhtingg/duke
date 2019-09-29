@@ -56,34 +56,33 @@ public class DialogBox extends HBox {
         setAlignment(Pos.TOP_LEFT);
     }
 
+    private static Image userImage = new Image(DialogBox.class.getResourceAsStream("/images/user.png"));
+    private static Image dukeImage = new Image(DialogBox.class.getResourceAsStream("/images/duke.png"));
+
     /**
      * Creates a DialogBox with the specified text and image.
      * @param text text specified by user.
-     * @param img user image.
      * @return DialogBox to be rendered in GUI.
      */
-    public static DialogBox getUserDialog(String text, Image img) {
-        var db = new DialogBox(text, img);
-        db.dialog.setMaxWidth(Region.USE_PREF_SIZE);
-        db.dialog.setMinHeight(Region.USE_PREF_SIZE);
-        return db;
+    public static DialogBox getUserDialog(String text) {
+        return getStandardDialog(text, userImage);
     }
 
     /**
      * Creates a DialogBox with the specified text and image.
      * @param text text returned by Duke.
-     * @param img Duke image.
      * @return DialogBox to be rendered in GUI.
      */
-    public static DialogBox getDukeDialog(String text, Image img) {
-        var db = new DialogBox(text, img);
-        System.out.println(db.dialog.wrapTextProperty());
-        if (db.dialog.getPrefWidth() > text.length()) {
-            db.dialog.setWrapText(true);
-        }
-        System.out.println(db.dialog.wrapTextProperty());
-        db.dialog.setMinHeight(Region.USE_PREF_SIZE);
+    public static DialogBox getDukeDialog(String text) {
+        var db = getStandardDialog(text, dukeImage);
         db.flip();
+        return db;
+    }
+
+    private static DialogBox getStandardDialog(String text, Image img) {
+        var db = new DialogBox(text, img);
+        db.dialog.setWrapText(true);
+        db.dialog.setMinHeight(Region.USE_PREF_SIZE);
         return db;
     }
 }
