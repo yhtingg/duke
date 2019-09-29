@@ -36,19 +36,20 @@ public class SummaryCommand extends Command {
 
         List<String> list = new ArrayList<>();
         list.add("Here is a summary of your loans and debts.");
-        boolean isLoan = false;
+        boolean reachedLoans = false;
+        boolean reachedDebts = false;
         int index = 1;
         for (Person person : people) {
             if (person.owesYouMoney()) {
-                if (!isLoan) {
-                    isLoan = true;
+                if (!reachedLoans) {
+                    reachedLoans = true;
                     list.add("    Loans:");
                 }
                 list.add(String.format("      %d. %s: $%.2f", index, person.getName(), person.getAmountLent()));
                 index++;
             } else {
-                if (isLoan) {
-                    isLoan = false;
+                if (!reachedDebts) {
+                    reachedDebts = true;
                     list.add("    Debts:");
                     index = 1;
                 }
