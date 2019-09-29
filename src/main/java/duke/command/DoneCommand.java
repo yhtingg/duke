@@ -40,7 +40,7 @@ public class DoneCommand extends Command {
 
         List<String> list = new ArrayList<>();
         list.add("Nice! I've marked this task as done:");
-        list.add(String.format("  %s", task));
+        list.add(String.format("    %s", task));
         ui.print(new Message(list));
     }
 

@@ -42,17 +42,17 @@ public class SummaryCommand extends Command {
             if (person.owesYouMoney()) {
                 if (!isLoan) {
                     isLoan = true;
-                    list.add("  Loans:");
+                    list.add("    Loans:");
                 }
-                list.add(String.format("    %d. %s: $%.2f", index, person.getName(), person.getAmountLent()));
+                list.add(String.format("      %d. %s: $%.2f", index, person.getName(), person.getAmountLent()));
                 index++;
             } else {
                 if (isLoan) {
                     isLoan = false;
-                    list.add("  Debts:");
+                    list.add("    Debts:");
                     index = 1;
                 }
-                list.add(String.format("    %d. %s: $%.2f", index, person.getName(), person.getAmountOwed()));
+                list.add(String.format("      %d. %s: $%.2f", index, person.getName(), person.getAmountOwed()));
                 index++;
             }
         }

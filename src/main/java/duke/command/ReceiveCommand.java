@@ -52,7 +52,7 @@ public class ReceiveCommand extends Command {
 
                 List<String> list = new ArrayList<>();
                 list.add("Alright, I've added this transaction:");
-                list.add(String.format("  received $%.2f from %s", this.amount, this.name));
+                list.add(String.format("    received $%.2f from %s", this.amount, this.name));
                 ui.print(new Message(list));
             }
         }

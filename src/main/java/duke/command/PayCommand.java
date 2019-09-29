@@ -52,7 +52,7 @@ public class PayCommand extends Command {
 
                 List<String> list = new ArrayList<>();
                 list.add("Alright, I've added this transaction:");
-                list.add(String.format("  repaid $%.2f to %s", this.amount, this.name));
+                list.add(String.format("    repaid $%.2f to %s", this.amount, this.name));
                 ui.print(new Message(list));
             }
         }

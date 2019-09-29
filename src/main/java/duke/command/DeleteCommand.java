@@ -39,7 +39,7 @@ public class DeleteCommand extends Command {
 
         List<String> list = new ArrayList<>();
         list.add("Noted. I've removed this task:");
-        list.add(String.format("  %s", task));
+        list.add(String.format("    %s", task));
         String noun = tasks.size() > 1 ? "tasks" : "task";
         list.add(String.format("Now you have %d %s in the list.", tasks.size(), noun));
         ui.print(new Message(list));

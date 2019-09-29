@@ -22,12 +22,9 @@ public class Message {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        String border = "    __________________________________________\n";
-        sb.append(border);
         for (String string : strings) {
-            sb.append(String.format("     %s\n", string));
+            sb.append(String.format("%s\n", string));
         }
-        sb.append(border);
         return sb.toString();
     }
 }

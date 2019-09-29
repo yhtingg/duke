@@ -36,11 +36,11 @@ public class Ui {
      * Prints the welcome message.
      */
     public void showWelcome() {
-        String logo = " ____        _        \n"
-                + "|  _ \\ _   _| | _____ \n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
+        String logo = " ____          _        \n"
+                    + "|   _   \\ _   _|  |  _____  \n"
+                    + "|  |  |   |  |  |  |  |/  /  _   \\\n"
+                    + "|  |_|   |  |_|  |    <   __/\n"
+                    + "|____/ \\__,_|_|\\_\\___|\n";
         print("Hello from\n" + logo);
 
         greet();
@@ -58,7 +58,7 @@ public class Ui {
      * Prints a greeting message to the user.
      */
     public void greet() {
-        String message = "Hello! I'm Duke.\n     What can I do for you?";
+        String message = "Hello! I'm Duke.\nWhat can I do for you?";
         print(message);
     }
 
