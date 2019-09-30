@@ -8,9 +8,10 @@ import duke.expense.Person;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.IOException;
+import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.io.IOException;
 
 import java.util.List;
 
@@ -99,8 +100,14 @@ public class Storage {
      * @param tasks task list to be saved.
      */
     public void save(List<Task> tasks, List<Person> people) {
-        try (FileWriter writer = new FileWriter(this.filepath);
-             BufferedWriter bw = new BufferedWriter(writer)) {
+        try {
+            File file = new File(this.filepath);
+            if (!file.exists()) {
+                file.getParentFile().mkdirs();
+                file.createNewFile();
+            }
+            FileWriter writer = new FileWriter(this.filepath);
+            BufferedWriter bw = new BufferedWriter(writer);
             String line;
             for (Task task : tasks) {
                 if (task instanceof Todo) {
