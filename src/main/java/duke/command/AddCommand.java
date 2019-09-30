@@ -54,7 +54,7 @@ public class AddCommand extends Command {
             tasks.add(deadline);
             return deadline;
         } else {
-            throw new DukeException("☹ OOPS!!! A valid datetime was not submitted.");
+            throw new DukeException("A valid datetime was not submitted. :(");
         }
     }
 
@@ -75,7 +75,7 @@ public class AddCommand extends Command {
             tasks.add(event);
             return event;
         } else {
-            throw new DukeException("☹ OOPS!!! A valid datetime was not submitted.");
+            throw new DukeException("A valid datetime was not submitted. :(");
         }
     }
 
@@ -91,21 +91,21 @@ public class AddCommand extends Command {
         switch (taskType) {
         case "todo":
             if (taskText.isEmpty()) {
-                throw new DukeException("☹ OOPS!!! The description of a todo cannot be empty.");
+                throw new DukeException("The description of a todo cannot be empty!");
             }
             return addTodo(taskText, tasks);
         case "deadline":
             if (taskText.isEmpty()) {
-                throw new DukeException("☹ OOPS!!! The description of a deadline cannot be empty.");
+                throw new DukeException("The description of a deadline cannot be empty!");
             }
             return addDeadline(taskText, tasks);
         case "event":
             if (taskText.isEmpty()) {
-                throw new DukeException("☹ OOPS!!! The description of a event cannot be empty.");
+                throw new DukeException("The description of a event cannot be empty!");
             }
             return addEvent(taskText, tasks);
         default:
-            throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
+            throw new DukeException("I'm sorry, but I don't know what that means :(");
         }
     }
 

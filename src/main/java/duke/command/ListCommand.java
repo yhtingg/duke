@@ -26,7 +26,6 @@ public class ListCommand extends Command {
     @Override
     public void execute(ListStoreModel lists, Ui ui, Storage storage) {
         List<Task> tasks = lists.taskList;
-        System.out.println(tasks.isEmpty());
         if (tasks.isEmpty()) {
             ui.print("There are no tasks currently. :)");
             return;

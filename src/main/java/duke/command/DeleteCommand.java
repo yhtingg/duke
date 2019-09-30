@@ -31,7 +31,7 @@ public class DeleteCommand extends Command {
     public void execute(ListStoreModel lists, Ui ui, Storage storage) throws DukeException {
         List<Task> tasks = lists.taskList;
         if (this.index > tasks.size()) {
-            throw new DukeException("☹ OOPS!!! There is no such task.");
+            throw new DukeException("There is no such task!");
         }
         assert this.index >= 0 && this.index <= tasks.size() : "Index is out of range.";
         Task task = tasks.get(this.index - 1);

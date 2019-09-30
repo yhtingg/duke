@@ -38,9 +38,6 @@ public class Storage {
             while ((line = br.readLine()) != null) {
                 lists = handleInput(line, lists);
             }
-            System.out.println(lists.peopleList);
-            System.out.println(lists.taskList);
-            System.out.println(lists.taskList.isEmpty());
         } catch (IOException e) {
             System.err.format("IOException: %s%n", e);
         }

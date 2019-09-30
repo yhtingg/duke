@@ -42,7 +42,7 @@ public class Parser {
             switch (firstWord) {
             case "done": case "delete":
                 if (commandList.length == 1) {
-                    throw new DukeException("☹ OOPS!!! The task index cannot be empty.");
+                    throw new DukeException("The task index cannot be empty!");
                 }
                 switch (firstWord) {
                 case "done":
