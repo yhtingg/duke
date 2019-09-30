@@ -39,6 +39,7 @@ public class Storage {
             while ((line = br.readLine()) != null) {
                 lists = handleInput(line, lists);
             }
+            br.close();
         } catch (IOException e) {
             System.err.format("IOException: %s%n", e);
         }
@@ -102,11 +103,12 @@ public class Storage {
     public void save(List<Task> tasks, List<Person> people) {
         try {
             File file = new File(this.filepath);
+            System.out.println(file.exists());
             if (!file.exists()) {
                 file.getParentFile().mkdirs();
                 file.createNewFile();
             }
-            FileWriter writer = new FileWriter(this.filepath);
+            FileWriter writer = new FileWriter(file);
             BufferedWriter bw = new BufferedWriter(writer);
             String line;
             for (Task task : tasks) {
@@ -122,6 +124,7 @@ public class Storage {
                 line = String.format("%s | %.2f\n", person.getName(), person.getAmountOwed());
                 bw.write(line);
             }
+            bw.close();
         } catch (IOException e) {
             System.err.format("IOException: %s%n", e);
         }
