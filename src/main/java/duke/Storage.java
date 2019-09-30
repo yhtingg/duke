@@ -109,7 +109,6 @@ public class Storage {
     public void save(List<Task> tasks, List<Person> people) {
         try {
             File file = new File(this.filepath);
-            System.out.println(file.exists());
             if (!file.exists()) {
                 file.getParentFile().mkdirs();
                 file.createNewFile();
