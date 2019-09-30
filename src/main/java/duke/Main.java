@@ -24,7 +24,7 @@ public class Main extends Application {
             stage.setScene(scene);
             stage.setTitle("Duke");
             MainWindow window = fxmlLoader.getController();
-            duke = new Duke("/home/yhting/2103T/duke/data/duke.txt", window);
+            duke = new Duke("./data/duke.txt", window);
             window.setDuke(duke);
             duke.init();
             stage.show();
