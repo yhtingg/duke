@@ -28,11 +28,8 @@ public class Duke {
     public Duke(String filePath, MainWindow window) {
         ui = new Ui(window);
         storage = new Storage(filePath);
-        try {
-            lists = storage.load();
-        } catch (DukeException e) {
-            ui.showLoadingError();
-        }
+        lists = storage.load();
+        ui.getInfoMessage(lists);
     }
 
     /**

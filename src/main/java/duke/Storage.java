@@ -29,9 +29,8 @@ public class Storage {
     /**
      * Loads the task list from the file.
      * @return task list.
-     * @throws DukeException if file is empty.
      */
-    public ListStoreModel load() throws DukeException {
+    public ListStoreModel load() {
         ListStoreModel lists = new ListStoreModel();
         try (FileReader reader = new FileReader(this.filepath);
              BufferedReader br = new BufferedReader(reader)) {
@@ -39,15 +38,21 @@ public class Storage {
             while ((line = br.readLine()) != null) {
                 lists = handleInput(line, lists);
             }
-            if (lists.taskList.isEmpty()) {
-                throw new DukeException("");
-            }
+            System.out.println(lists.peopleList);
+            System.out.println(lists.taskList);
+            System.out.println(lists.taskList.isEmpty());
         } catch (IOException e) {
             System.err.format("IOException: %s%n", e);
         }
         return lists;
     }
 
+    /**
+     * Handles the string input from the storage file and adds a task or person respectively.
+     * @param input given string from the storage file.
+     * @param lists taskList and peopleList.
+     * @return lists after being populated.
+     */
     private ListStoreModel handleInput(String input, ListStoreModel lists) {
         String[] attr = input.split(" \\| ");
         if (attr.length == 2) {

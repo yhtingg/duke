@@ -20,8 +20,16 @@ public class Ui {
     /**
      * Prints a message when there is no saved data.
      */
-    void showLoadingError() {
-        print("There is no saved task list. I've created a new one for you.");
+    public void getInfoMessage(ListStoreModel lists) {
+        String taskMessage = "There is no saved task list. I've created a new one for you.";
+        String peopleMessage = "You have no loans or debts! :)";
+        if (lists.taskList.isEmpty() && lists.peopleList.isEmpty()) {
+            print(taskMessage + " " + peopleMessage);
+        } else if (lists.taskList.isEmpty()) {
+            print(taskMessage);
+        } else if (lists.peopleList.isEmpty()) {
+            print(peopleMessage);
+        }
     }
 
     /**
