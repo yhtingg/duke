@@ -142,14 +142,14 @@ Examples:
 
 ---
 
-### Exiting the program : `exit`
+### Exiting the program : `bye`
 
 Exits the program.
 
-Format: `exit`
+Format: `bye`
 
 ### Saving the data
 
 Task and transaction data are saved in the hard disk automatically after exiting the program.
 
-Remember to type `exit`!
+Remember to type `bye`!
