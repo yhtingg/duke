@@ -80,6 +80,10 @@ public class Ui {
         this.window.handleDukeResponse(new Message(list).toString());
     }
 
+    /**
+     * Prints a regular string into the GUI.
+     * @param message string to be rendered.
+     */
     public void print(Message message) {
         this.window.handleDukeResponse(message.toString());
     }

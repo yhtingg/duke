@@ -89,6 +89,12 @@ public class Storage {
         }
     }
 
+    /**
+     * Reads the given string and processes it accordingly to return
+     * an appropriate Person.
+     * @param attr attributes of the given string.
+     * @return matching Person as implied from the given string.
+     */
     private Person parsePerson(String[] attr) {
         assert attr.length == 2 : String.format(" Wrong number or arguments: expected 2, got %d", attr.length);
         String name = attr[0];

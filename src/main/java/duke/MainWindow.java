@@ -51,6 +51,9 @@ public class MainWindow extends AnchorPane {
         }
     }
 
+    /**
+     * Disables the sendButton if the user input field is empty.
+     */
     @FXML
     private void preventEmptyInput() {
         String input = userInput.getText();
@@ -61,6 +64,10 @@ public class MainWindow extends AnchorPane {
         }
     }
 
+    /**
+     * Adds the duke dialog into the dialogBox in the GUI.
+     * @param response duke response to be added.
+     */
     protected void handleDukeResponse(String response) {
         dialogContainer.getChildren().add(
                 DialogBox.getDukeDialog(response)
